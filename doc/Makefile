@@ -1,5 +1,4 @@
-
-SRC= Makefile gis_dokumentacja bibliografia.bib
+SRC= Makefile gis_dokumentacja.tex bibliografia.bib
 
 # pdf, ps, gs, gs2, dvi
 default: t.ps
