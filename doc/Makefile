@@ -27,9 +27,6 @@ t: default
 t.dvi: $(SRC)
 	latex gis_dokumentacja
 	latex gis_dokumentacja
-	bibtex gis_dokumentacja
-	latex gis_dokumentacja 
-	latex gis_dokumentacja
 
 t.pdf: t.dvi
 	dvipdf t.dvi
@@ -41,7 +38,7 @@ tgz: clean
 	( D=`basename $$PWD`; cd ..; tar czf $$D.tgz $$D; ls -l $$D.tgz )
 
 aspell:
-	aspell --lang=pl  -t check gis_dokumentacja
+	aspell --lang=pl  -t check gis_dokumentacja.tex
 	
 v: t t.ps
 
