@@ -1,0 +1,93 @@
+
+\documentclass[a4paper, 10pt]{article}
+
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[OT4]{fontenc}
+\usepackage{geometry}
+\usepackage{ulem}
+\RequirePackage{url}
+
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{3mm plus1mm minus1mm}
+
+\geometry{verbose,a4paper,tmargin=2.4cm,bmargin=2.4cm,lmargin=2.4cm,rmargin=2.4cm}
+\usepackage{graphicx} % wstawianie obrazkow
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{{\bf {Grafy i sieci}} \\ {\large Sprawozdanie 1}}
+\date{\today}
+\author{Filip Nabrdalik \\Agata Taraszkiewicz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\bibliographystyle{alpha}
+%%%%%%%
+\null  % Empty line
+\nointerlineskip  % No skip for prev line
+\vfill
+\let\snewpage \newpage
+\let\newpage \relax
+\maketitle 
+\let \newpage \snewpage
+\vfill
+\break % page break
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents
+
+\newpage
+
+\newcommand{\ang}[1]{(ang. {\em #1}\/)}
+\newcommand{\e}[1]{{\em #1}\/}
+
+
+
+
+
+\section{Treść zadania}
+
+{\bf{Zadanie}}
+
+Porównanie algorytmów znajdowania minimalnego drzewa rozpinającego.
+
+Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania minimalnego drzewa rozpinającego w grafie nieskierowanym. 
+
+
+\section{Opis}
+
+
+Celem projektu jest implementacja oraz eksperymentalna ocena wydajności dwóch algorytmów znajdowania minimalnego drzewa rozpinającego \ang{MST, Minimum Spanning Tree} 
+w grafie nieskierowanym. Do badań zostały wybrane drzy algorytmy: Kruskalla, Prima oraz Borůvki. Należą one do grupy algorytmów zachłannych tj. nie dokonujących oceny czy w kolejnych krokach 
+jest sens wykonywać dane działanie, lecz podejmują decyzję lokalnie optymalną, czyli najlepszą dla danego kroku.
+%Jeszcze moze byc i ten Boruvka algorithm: na wiki jest to ladnie wytlumaczone https://pl.wikipedia.org/wiki/Algorytm_Bor%C5%AFvki	
+
+
+Eksperymenty badawcze będą polegały na ocenie czasu pracy oraz zużycia pamięci podczas wykonywania trzech algorytmów dla grafów o róznej strukturze, ilosci wierzchołków $|V|$ 
+oraz krawedzi $|E|$ na komputerze klasy PC. 
+
+Implementacja algorytmów oraz struktur danych zostanie zrealizowana w języku programowania C++ z naciskiem na minimalizacje zużycia pamięci operacyjnej
+oraz czasu procesora. 
+
+
+
+
+
+
+\subsection{}
+
+
+
+%BIBLIOGRAFIA
+\nocite{*}
+\bibliography{bibliografia}
+
+
+\end{document}
+
+
