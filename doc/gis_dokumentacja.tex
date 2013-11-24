@@ -20,28 +20,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\title{{\bf {Grafy i sieci}} \\ {\large Sprawozdanie 1}}
-\date{\today}
-\author{Filip Nabrdalik \\Agata Taraszkiewicz}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\bibliographystyle{alpha}
 %%%%%%%
-\null  % Empty line
-\nointerlineskip  % No skip for prev line
-\vfill
-\let\snewpage \newpage
-\let\newpage \relax
-\maketitle 
-\let \newpage \snewpage
-\vfill
-\break % page break
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tableofcontents
 
-\newpage
 
 \newcommand{\ang}[1]{(ang. {\em #1}\/)}
 \newcommand{\e}[1]{{\em #1}\/}
@@ -49,6 +34,10 @@
 
 
 
+\title{GIS: Sprawozdanie 1}
+\author{Filip Nabrdalik\\ Agata Taraszkiewicz}
+\date{} 
+\maketitle 
 
 \section{Treść zadania}
 
@@ -56,38 +45,35 @@
 
 Porównanie algorytmów znajdowania minimalnego drzewa rozpinającego.
 
-Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania minimalnego drzewa rozpinającego w grafie nieskierowanym. 
+{\it Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania minimalnego drzewa rozpinającego w grafie nieskierowanym.} 
 
 
 \section{Opis}
 
 
-Celem projektu jest implementacja oraz eksperymentalna ocena wydajności dwóch algorytmów znajdowania minimalnego drzewa rozpinającego \ang{MST, Minimum Spanning Tree} 
-w grafie nieskierowanym. Do badań zostały wybrane drzy algorytmy: Kruskalla, Prima oraz Borůvki. Należą one do grupy algorytmów zachłannych tj. nie dokonujących oceny czy w kolejnych krokach 
-jest sens wykonywać dane działanie, lecz podejmują decyzję lokalnie optymalną, czyli najlepszą dla danego kroku.
-%Jeszcze moze byc i ten Boruvka algorithm: na wiki jest to ladnie wytlumaczone https://pl.wikipedia.org/wiki/Algorytm_Bor%C5%AFvki	
+Celem projektu jest zbadanie algorytmów znajdowania minimalnego drzewa rozpinającego (ang. MST, Minimum Spanning Tree). Minimalne drzewo rozpinające grafu jest drzewem rozpinającym o najmniejszej sumie wag krawędzi. 
+Do pracy badawczej wybraliśmy trzy algorytmy rozwiązujące problem poszukiwania MST w grafie nieskierowanym:
+\begin{itemize}
+\item Kruskalla,
+\item Prima,
+\item Borůvki
+\end{itemize}
+Algorytmy należą do grupy algorytmów zachłannych, czyli wybierających decyzje lokalnie optymalną w danym kroku. Złożoność obliczeniowa powyższych algorytmów jest liniowo-logarytmiczna.
+
+Badanie wszystkich algorytmów będzie polegało na ocenie wydajności oraz niezawodności w zależności od dostarczonych danych testowych. Do testów zostaną wykorzystane grafy nieskierowane o różnej strukturze, ilości wierzchołków $|V|$ oraz krawędzi $|E|$. Badanie wydajności algorytmów będzie polegało na pomiarze czasu ich wykonania oraz zużycia pamięci. Badanie niezawodności będzie obejmowało próbę takiego dobrania danych testowych spełniających warunki zadania, aby w rozsądnym czasie algorytm nie znalazł minimalnego drzewa rozpinającego.
+
+Implementacja algorytmów oraz struktur danych zostanie zrealizowana w języku programowania C++ z naciskiem na minimalizacje zużycia pamięci operacyjnej oraz czasu procesora. Do testów zostanie wykorzystany komputer klasy PC lub maszyna wirtualna z systemem Linux. Dalsze decyzje projektowe zostaną podjęte w następnej fazie.
 
 
-Eksperymenty badawcze będą polegały na ocenie czasu pracy oraz zużycia pamięci podczas wykonywania trzech algorytmów dla grafów o róznej strukturze, ilosci wierzchołków $|V|$ 
-oraz krawedzi $|E|$ na komputerze klasy PC. 
+\section{Literatura}
 
-Implementacja algorytmów oraz struktur danych zostanie zrealizowana w języku programowania C++ z naciskiem na minimalizacje zużycia pamięci operacyjnej
-oraz czasu procesora. 
+1. Ninna Lei, Three minimum spanning tree algorithms, \url{http://homes.cs.washington.edu/~jinna/ugrad_work/thesis.pdf }
+ 
+2.  Igor Podsechin, Comparing minimum spanning tree algorithms, \url{http://www.aka.fi/Tiedostot/Tiedostot/Viksu/Viksu%202008/IgorPodsechin.pdf}
 
+3. Joseph. B. Kruskal, On the Shortest Spanning Subtree of a Graph and the Traveling Salesman Problem, \url{www.cmat.edu.uy/~marclan/TAG/Sellanes/Kruskal.pdf }
 
-
-
-
-
-\subsection{}
-
-
-
-%BIBLIOGRAFIA
-\nocite{*}
-\bibliography{bibliografia}
-
-
+4. Algorytmy Grafowe \url{http://www.algorytm.org/algorytmy-grafowe/algorytm-prima.html}
 \end{document}
 
 
