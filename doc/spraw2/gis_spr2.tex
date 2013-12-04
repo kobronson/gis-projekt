@@ -7,6 +7,9 @@
 \usepackage[OT4]{fontenc}
 \usepackage{geometry}
 \usepackage{ulem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
 \RequirePackage{url}
 
 
@@ -53,7 +56,40 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
  
 
 \section{Opis badanych algorytmów}
+
 	\subsection{Algorytm Prima}
+
+\floatname{algorithm}{Algorytm}
+\begin{algorithm}
+\caption{Algorytm Prima, znajdowanie MST}
+\begin{algorithmic}
+\REQUIRE Spójny graf $G=(V,E)$ ,$V \neq \emptyset$. 
+\ENSURE $E_{new}=\{\}$ , $V_{new}=x$, gdzie $x$ jest wierzchołkiem początkowym należącym do $V$
+\WHILE{$V_{new} \neq V$}
+\STATE $X \leftarrow x$ 
+\COMMENT{Wybierz krawedź}
+\ENDWHILE
+
+\STATE $y \leftarrow 1$
+\IF{$n < 0$}
+\STATE $X \leftarrow 1 / x$
+\STATE $N \leftarrow -n$
+\ELSE
+\STATE $X \leftarrow x$
+\STATE $N \leftarrow n$
+\ENDIF
+\WHILE{$N \neq 0$}
+\IF{$N$ is even}
+\STATE $X \leftarrow X \times X$
+\STATE $N \leftarrow N / 2$
+\ELSE[$N$ is odd]
+\STATE $y \leftarrow y \times X$
+\STATE $N \leftarrow N - 1$
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}	
+	
 	\subsection{Algorytm Kruskalla}
 	\subsection{Algorytm Borůvki}
 \section{Planowana złożoność obliczeniowa}
