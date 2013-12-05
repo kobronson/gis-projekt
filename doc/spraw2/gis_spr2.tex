@@ -9,6 +9,7 @@
 \usepackage{ulem}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage[section]{placeins}
 
 \RequirePackage{url}
 
@@ -44,6 +45,10 @@
 \renewcommand{\algorithmicreturn}{\textbf{Wyjście:}}
 \renewcommand{\algorithmictrue}{\textbf{true}}
 \renewcommand{\algorithmicfalse}{\textbf{false}}
+
+\floatname{algorithm}{}
+\renewcommand\thealgorithm{}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -89,12 +94,12 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
 
 	\subsection{Algorytm Prima}
 %http://www.comp.dit.ie/rlawlor/alg_ds/mst/prim.pdf
-\floatname{algorithm}{Algorytm}
+
 \begin{algorithm}
-\caption{Algorytm Prima, znajdowanie MST}
-\begin{algorithmic}
+\caption{{\bf Algorytm Prima}, znajdowanie MST}
+\begin{algorithmic}[!h]
 \REQUIRE Spójny graf $G=(V,E)$ ,$V \neq \emptyset$. 
-\ENSURE $E_{new}=\{\}$ , $V_{new}=\{x\}$, gdzie $x$ jest wierzchołkiem początkowym należącym do $V$, a $E$ pustym zbiorem krawędzi.
+\ENSURE $E_{new}=\{\}$ , $V_{new}=\{x\}$, gdzie $x$ jest wierzchołkiem początkowym należącym do $V$, a $E_new$ pustym zbiorem krawędzi.
 \WHILE{$V_{new} \neq V$}
 \STATE \textbullet{\hspace{0.5cm} Wybierz krawędź $(u,v)$ o najmniejszej wadze taką, że $u \in V_{new}$ i $v \notin V_{new}$.}
 \STATE \textbullet{\hspace{0.5cm} Dodaj wierzchołek $v$ do $V_{new}$, a krawędź  $(u,v)$ do $E_{new}$.}   
@@ -104,7 +109,52 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
 \end{algorithm}	
 	
 	\subsection{Algorytm Kruskalla}
+	
+	
+	
+\begin{algorithm}
+\caption{{\bf Algorytm Kruskalla}, znajdowanie MST - do opisu użyta \textit{struktura zbiorów rozłącznych}}
+\begin{algorithmic}[!h]
+\REQUIRE Spójny graf $G=(V,E)$ ,$V \neq \emptyset$. 
+\ENSURE $A=\emptyset$ zbiór zawierający krawędzie MST
+\FORALL{$v \in V$} 
+\STATE{$MAKE-SET(v)$} 
+\ENDFOR 
+\FORALL{ $(u,v) \in E$, z listy krawędzi posortowanych rosnąco}
+\IF{$FIND-SET(u) \neq FIND-SET(v)$} 
+\STATE{$A = A \cup \{(u, v)\}$} 
+\STATE{$UNION(u,v)$}
+\COMMENT{połączenie drzew $u$ i $v$}
+\ENDIF
+\ENDFOR 
+\RETURN Zbiór $A$ opisujący minimalne drzewo rozpinające grafu $G$.
+\end{algorithmic}
+\end{algorithm}
+\FloatBarrier
+
+
 	\subsection{Algorytm Borůvki}
+	
+%http://sajun.org/index.php/Boruvka%27s_algorithm
+	
+\begin{algorithm}
+\caption{{\bf Algorytm Borůvki}, znajdowanie MST}
+\begin{algorithmic}[!h]
+\REQUIRE Spójny graf $G=(V,E)$ ,$V \neq \emptyset$. 
+\ENSURE $L=(V,\emptyset)$, graf złożony tylko z wierzchołków $V$
+\WHILE{$L$ nie jest połączony, tzn. jest lasem wiecej niż jednego drzewa $V$}
+\FORALL{  $T \in L$, gdzie T jest drzewem} 
+\STATE \textbullet{\hspace{0.5cm} Znajdź krawędź o najmiejszej wadze w grafie $G$ taką, że łączy ona wierchołek w drzewie $T$ z wierchołkiem nie należącym do $T$.}
+\STATE \textbullet{\hspace{0.5cm} Dodaj krawędź do $L$ redukując ilość drzew w $T$ o jeden.}
+\ENDFOR 
+\ENDWHILE
+\RETURN $L$ opisujący MST.
+\end{algorithmic}
+\end{algorithm}
+
+
+\FloatBarrier
+
 \section{Planowana złożoność obliczeniowa}
 \section{Struktury danych}
 \section{Założenia programu}
