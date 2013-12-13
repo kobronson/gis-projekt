@@ -92,6 +92,9 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
 
 \section{Opis badanych algorytmów}
 
+Do eksperymentów badawczych zostały wybrane trzy zachłanne algorytmy znajdowania minimalnego drzewa rozpinającego: Kruskalla, Prima oraz
+Borůvki.
+
 	\subsection{Algorytm Prima}
 %http://www.comp.dit.ie/rlawlor/alg_ds/mst/prim.pdf
 
@@ -107,10 +110,20 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
 \RETURN $E_{new}$ oraz $V_{new}$ opisujące minimalne drzewo rozpinające grafu $G$. 
 \end{algorithmic}
 \end{algorithm}	
+
+Złozoność obliczeniowa w zaleznosci od implementacji:
+
+\begin{itemize}
+\item{Macierz sąsiedstwa ${\bf O}(V^2)$,} 
+\item{lista sąsiedstwa i kopiec binarny ${\bf O}((|V| + |E|) log |V|) = {\bf O}(|E| log |V|)$,}
+\item{lista sąsiedstwa i kopiec Fibonacciego  	${\bf O}(|E| + |V| log |V|)$.} 
+\end{itemize}
+
+
 	
 	\subsection{Algorytm Kruskalla}
 	
-	
+%http://www.comp.dit.ie/rlawlor/Alg_DS/MST/Kruskal.pdf	
 	
 \begin{algorithm}
 \caption{{\bf Algorytm Kruskalla}, znajdowanie MST - do opisu użyta \textit{struktura zbiorów rozłącznych}}
@@ -132,8 +145,9 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
 \end{algorithm}
 \FloatBarrier
 
+Złozoność obliczeniowa ${\bf O}(|E| log |V|)$
 
-	\subsection{Algorytm Borůvki}
+	\subsection{Algorytm Borůvki}.
 	
 %http://sajun.org/index.php/Boruvka%27s_algorithm
 	
@@ -152,10 +166,12 @@ Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania min
 \end{algorithmic}
 \end{algorithm}
 
+Złozoność obliczeniowa ${\bf O}(|E| log |V|)$.
 
 \FloatBarrier
 
 \section{Planowana złożoność obliczeniowa}
+
 \section{Struktury danych}
 \section{Założenia programu}
 \section{Projekt testów}
