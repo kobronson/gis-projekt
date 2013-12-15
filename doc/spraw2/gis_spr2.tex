@@ -221,10 +221,21 @@ Można oszacować zużycie pamięci przez graf $G=(V,E)$ dla 32 bitowej architek
 
 
 \section{Założenia programu}
-Grafy zadane są w postaci plików tekstowych, gdzie pierwsza 
-i druga kolumna zawierają identyfikator 2 różnych dwówierzchołków
-grafu pomiędzy, którymi istnieje krawędź, a trzecia kolumna reprezentuje
-wagę krawędzi.
+Grafy do testowania zadane są w postaci plików tekstowych, gdzie pierwsza 
+i druga kolumna zawierają identyfikator 2 różnych wierzchołków
+grafu pomiędzy którymi istnieje krawędź, a trzecia kolumna reprezentuje
+wagę krawędzi. Dla wszystkich algorytmów, konieczne jest spełnienia warunku spójnosci grafu, w związku z 
+tym dane wejściowe powinny reprezentować nieskierowane grafy spójne. 
+
+
+Górnym ograniczeniem na liczbę wierchołków jest typ danych uint16\_t
+dla którego maksymalna wartość to 65535, jest ona zarazem najwyższym dostępnym
+identyfikatorem węzła. Dodatkowo podczas testów mierzony bedzie czas wykonania algorytmu
+w sekundach oraz ilość pamieci wykorzystywana przez proces. Jeśli zostanie przekroczony
+pewien empirycznie wyznaczony czas wykonania, algorytm zostanie przerwany. 
+
+
+
 
 
 
