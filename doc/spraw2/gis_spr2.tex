@@ -10,6 +10,7 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage[section]{placeins}
+\usepackage{amsmath}
 
 \RequirePackage{url}
 
@@ -112,13 +113,7 @@ kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierz
 \end{algorithmic}
 \end{algorithm}	
 
-Złozoność obliczeniowa w zaleznosci od implementacji:
 
-\begin{itemize}
-\item{Macierz sąsiedstwa ${\bf O}(V^2)$,} 
-\item{lista sąsiedstwa i kopiec binarny ${\bf O}((|V| + |E|) log |V|) = {\bf O}(|E| log |V|)$,}
-\item{lista sąsiedstwa i kopiec Fibonacciego  	${\bf O}(|E| + |V| log |V|)$.} 
-\end{itemize}
 
 
 	
@@ -151,7 +146,7 @@ krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarza
 \end{algorithm}
 \FloatBarrier
 
-Złozoność obliczeniowa ${\bf O}(|E| log |V|)$
+
 
 	\subsection{Algorytm Borůvki}.
 	
@@ -181,13 +176,51 @@ $S$ dodawana jest do lasu.
 \end{algorithmic}
 \end{algorithm}
 
-Złozoność obliczeniowa ${\bf O}(|E| log |V|)$.
+
 
 \FloatBarrier
 
-\section{Planowana złożoność obliczeniowa}
+\section{Planowana złożoność obliczeniowa i struktury danych}
 
-\section{Struktury danych}
+We wszystkich przedstawionych algorytmach sortowanie krawędzi rosnąco pochłania 
+najwięcej czasu. Złożoność obliczeniowe dla algorytmów Borůvki i Kruskala wynosi
+ ${\bf O}(|E| log |E|)$. Natomiast dla algorytmu Prima w zależności od implementacji struktur danych:
+
+\begin{itemize}
+\item{macierz sąsiedstwa ${\bf O}(V^2)$,} 
+\item{lista sąsiedstwa i kopiec binarny ${\bf O}((|V| + |E|) log |V|) = {\bf O}(|E| log |V|)$,}
+\item{lista sąsiedstwa i kopiec Fibonacciego  	${\bf O}(|E| + |V| log |V|)$.} 
+\end{itemize}
+
+
+Do reprezentacji grafu użyte zostaną listy sąsiedztwa dla poszczególnych wierzchołków. Struktura
+{\it TNode}, reprezentująca wierchołek:
+
+\begin{tabular}{|l|c|c|}
+	\hline 
+  {\bf Typ} & {\bf Opis} & {\bf Rozmiar [byte]}\\
+  \hline 
+  \it{uint16\_t node\_id} & identyfikator węzła & 2 \\
+  \hline
+  \it{ uint8\_t state} & zmiennna pomocnicza  &  1 \\
+  \hline
+  \it{ struct TNode* next} & następny element na liście & 4 lub 8 \\
+  \hline 
+\end{tabular} 
+
+Struktura {\it TGraph}, gdzie kolejne indeksy tablicy to odpowiednio kolejne identyfikatory węzłów:
+
+\begin{tabular}{|l|c|c|}
+\hline {\bf Typ} & {\bf Opis} & {\bf Rozmiar [byte]}\\
+  \hline 
+   \it{struct TNode* L[MAX\_UNIT16]  } & lista sąsiedztwa & MAX\_UNIT16 * 4 lub 8 \\
+  \hline
+\end{tabular} 
+
+Można oszacować zużycie pamięci przez graf $G=(V,E)$ dla 32 bitowej architektury procesora: $\text{MAX\_UNIT16}\times4+7\times|E|$ bajtów.
+
+
+
 \section{Założenia programu}
 \section{Projekt testów}
 %testy dla grafów w zazleznosci od ich gestosci
