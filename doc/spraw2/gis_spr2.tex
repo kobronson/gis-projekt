@@ -113,8 +113,8 @@ Algorytm Prima został opracowany w 1930 roku przez Vojtěcha Jarníka. Algorytm
 \end{algorithm}	
 \FloatBarrier
 
- Ze zbioru wierchołków $V$ w grafie, wybierany jest jeden, który będzie początkiem drzewa rozpinającego. Następnie do drzewa dodawana jest   
-kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierzchołki w drzewie z wierchołkami spoza dzrewa. Krok ten jest powtarzany do uzyskania MST.
+ Ze zbioru wierzchołków $V$ w grafie, wybierany jest jeden, który będzie początkiem drzewa rozpinającego. Następnie do drzewa dodawana jest   
+kolejna krawędź - wybierana z krawędzi o najmniejszej wadze, łącząca wierzchołki w drzewie z wierzchołkami spoza drzewa. Krok ten jest powtarzany do uzyskania MST.
 
 	
 	\subsection{Algorytm Kruskala}
@@ -144,7 +144,7 @@ on do grupy algorytmów zachłannych.
 \end{algorithm}
 \FloatBarrier
 
-Budowany jest las w którym każdy wierzchołek stanowi oddzielne drzewo oraz zbiór zawierający wszyskie krawędzie grafu.
+Budowany jest las w którym każdy wierzchołek stanowi oddzielne drzewo oraz zbiór zawierający wszystkie krawędzie grafu.
 Następnie ze zbioru usuwana jest krawędź o najmniejszej wadze, jeśli krawędź łączy dwa oddzielne drzewa w lesie	to należy te drzewa połączyć w jedno za pomocą
 krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarzany do uzyskania MST.
 
@@ -162,9 +162,9 @@ energetycznych. Algorytm znajduje minimalne drzewo rozpinające dla spójnego gr
 \begin{algorithmic}[!h]
 \REQUIRE Spójny graf $G=(V,E)$ ,$V \neq \emptyset$. 
 \ENSURE $L=(V,\emptyset)$, graf złożony tylko z wierzchołków $V$
-\WHILE{$L$ nie jest połączony, tzn. jest lasem wiecej niż jednego drzewa $V$}
+\WHILE{$L$ nie jest połączony, tzn. jest lasem więcej niż jednego drzewa $V$}
 \FORALL{  $T \in L$, gdzie T jest drzewem} 
-\STATE \textbullet{\hspace{0.5cm} Znajdź krawędź o najmiejszej wadze w grafie $G$ taką, że łączy ona wierchołek w drzewie $T$ z wierchołkiem nie należącym do $T$.}
+\STATE \textbullet{\hspace{0.5cm} Znajdź krawędź o najmniejszej wadze w grafie $G$ taką, że łączy ona wierzchołek w drzewie $T$ z wierzchołkiem nie należącym do $T$.}
 \STATE \textbullet{\hspace{0.5cm} Dodaj krawędź do $L$ redukując ilość drzew w $T$ o jeden.}
 \ENDFOR 
 \ENDWHILE
@@ -174,10 +174,10 @@ energetycznych. Algorytm znajduje minimalne drzewo rozpinające dla spójnego gr
 
 \FloatBarrier
 
-Wagi krawędzi powinny być rózne, jeśli są jednak takie same to można je rozróżniać przyporządkowujac im odpowiednie etykiety.
-Z krawędzi grafu tworzony jest las, taki że kazda krawędź tworzy oddzielne drzewo. Następnie póki las ma więcej niż jeden komponent $C$, dla każdego
-z komponentów powtzarzany jest następujący krok: tworzony jest pusty zbiór wierchołków $S$, następnie dla każdej krawędzi występującej w komponencie znajdowana
-jest krawędź o najmniejszej wadze łącząca wirzchołek z $C$ z wierchołakiem spoza $C$ i dodawana jest do zbioru krawędzi $S$. Następnie krawędź o najmniejszej wadze ze zbioru
+Wagi krawędzi powinny być rożne, jeśli są jednak takie same to można je rozróżniać przyporządkowując im odpowiednie etykiety.
+Z krawędzi grafu tworzony jest las, taki że każda krawędź tworzy oddzielne drzewo. Następnie póki las ma więcej niż jeden komponent $C$, dla każdego
+z komponentów powtarzany jest następujący krok: tworzony jest pusty zbiór wierzchołków $S$, następnie dla każdej krawędzi występującej w komponencie znajdowana
+jest krawędź o najmniejszej wadze łącząca wierzchołek z $C$ z wierzchołkiem spoza $C$ i dodawana jest do zbioru krawędzi $S$. Następnie krawędź o najmniejszej wadze ze zbioru
 $S$ dodawana jest do lasu.
 \section{Planowana złożoność obliczeniowa i struktury danych}
 
@@ -186,22 +186,22 @@ najwięcej czasu. Złożoność obliczeniowe dla algorytmów Borůvki i Kruskala
  ${\bf O}(|E| log |E|)$. Natomiast dla algorytmu Prima w zależności od implementacji struktur danych:
 
 \begin{itemize}
-\item{macierz sąsiedstwa ${\bf O}(V^2)$,} 
-\item{lista sąsiedstwa i kopiec binarny ${\bf O}((|V| + |E|) log |V|) = {\bf O}(|E| log |V|)$,}
-\item{lista sąsiedstwa i kopiec Fibonacciego  	${\bf O}(|E| + |V| log |V|)$.} 
+\item{macierz sąsiedztwa ${\bf O}(V^2)$,} 
+\item{lista sąsiedztwa i kopiec binarny ${\bf O}((|V| + |E|) log |V|) = {\bf O}(|E| log |V|)$,}
+\item{lista sąsiedztwa i kopiec Fibonacciego  	${\bf O}(|E| + |V| log |V|)$.} 
 \end{itemize}
 
 
 Do reprezentacji grafu użyte zostaną listy sąsiedztwa dla poszczególnych wierzchołków. Struktura
-{\it TNode}, reprezentująca wierchołek:
+{\it TNode}, reprezentująca wierzchołek:
 
 \begin{tabular}{|l|c|c|}
 	\hline 
-  {\bf Typ} & {\bf Opis} & {\bf Rozmiar [bajt]}\\
+  {\bf TNode} & {\bf Opis} & {\bf Rozmiar [bajt]}\\
   \hline 
   \it{uint16\_t node\_id} & identyfikator węzła & 2 \\
   \hline
-  \it{ uint8\_t state} & zmiennna pomocnicza  &  1 \\
+  \it{ uint8\_t state} & zmienna pomocnicza  &  1 \\
   \hline
   \it{ struct TNode* next} & następny element na liście & 4 lub 8 \\
   \hline 
@@ -210,13 +210,15 @@ Do reprezentacji grafu użyte zostaną listy sąsiedztwa dla poszczególnych wie
 Struktura {\it TGraph}, gdzie kolejne indeksy tablicy to odpowiednio kolejne identyfikatory węzłów:
 
 \begin{tabular}{|l|c|c|}
-\hline {\bf Typ} & {\bf Opis} & {\bf Rozmiar [bajt]}\\
+\hline {\bf TGraph} & {\bf Opis} & {\bf Rozmiar [bajt]}\\
   \hline 
    \it{struct TNode* L[MAX\_UNIT16]  } & lista sąsiedztwa & MAX\_UNIT16 * 4 lub 8 \\
   \hline
 \end{tabular} 
 
 Można oszacować zużycie pamięci przez graf $G=(V,E)$ dla 32 bitowej architektury procesora $\text{MAX\_UNIT16}\times4+7\times|E|$ bajtów.
+Oczywiście podczas wykonywania algorytmu będą potrzebne dodatkowe struktury danych takie jak drzewa, co spowoduje wzrost zapotrzebowania na pamięć,
+jednak będą struktury te będą oparte na TNode, TGraph i tablicach.
 
 
 
@@ -224,14 +226,14 @@ Można oszacować zużycie pamięci przez graf $G=(V,E)$ dla 32 bitowej architek
 Grafy do testowania zadane są w postaci plików tekstowych, gdzie pierwsza 
 i druga kolumna zawierają identyfikator 2 różnych wierzchołków
 grafu pomiędzy którymi istnieje krawędź, a trzecia kolumna reprezentuje
-wagę krawędzi. Dla wszystkich algorytmów, konieczne jest spełnienia warunku spójnosci grafu, w związku z 
+wagę krawędzi. Dla wszystkich algorytmów, konieczne jest spełnienia warunku spójności grafu, w związku z 
 tym dane wejściowe powinny reprezentować nieskierowane grafy spójne. 
 
 
-Górnym ograniczeniem na liczbę wierchołków jest typ danych uint16\_t
+Górnym ograniczeniem na liczbę wierzchołków jest typ danych uint16\_t
 dla którego maksymalna wartość to 65535, jest ona zarazem najwyższym dostępnym
-identyfikatorem węzła. Dodatkowo podczas testów mierzony bedzie czas wykonania algorytmu
-w sekundach oraz ilość pamieci wykorzystywana przez proces. Jeśli zostanie przekroczony
+identyfikatorem węzła. Dodatkowo podczas testów mierzony będzie czas wykonania algorytmu
+w sekundach oraz ilość pamięci wykorzystywana przez proces. Jeśli zostanie przekroczony
 pewien empirycznie wyznaczony czas wykonania, algorytm zostanie przerwany. 
 
 
@@ -242,7 +244,22 @@ pewien empirycznie wyznaczony czas wykonania, algorytm zostanie przerwany.
 
 \section{Projekt testów}
 %testy dla grafów w zazleznosci od ich gestosci
-	
+
+Do testów zostaną wygenerowane odpowiednie zestawy testowe grafów przebadanych 
+pod kątem spójności i poprawności danych. Grafy będą różniły się ilością wierzchołków i gęstością krawędzi.
+
+Planowane, są testy dla grafów o liczbie wierzchołków od 10 do 2000 z odpowiednim skokiem oraz różnej gęstości grafu:\\
+$\{|E|\}=(10, 20, 50, 100, 200, 500, 750, 1000,2000)$, \\ $\{\frac{2|E|}{|V|(|V|-1)}\}= (0.1,0.3,0.5,0.7,0.9)$. \\
+Podczas poszczególnych testów mierzony będzie czas wykonania algorytmu oraz ilość wykorzystywanej pamięci operacyjnej komputera.
+
+Do testów zostanie użyty komputer klasy PC wyposażony w system Linux, wielordzeniowy 64 bitowy procesor i 8GB pamięci operacyjnej. Testy zostaną powtórzone kilkakrotnie, a ich wyniki uśrednione, 
+aby możliwie wyeliminować losowe obciążenie maszyny.
+
+Najciekawsze wyniki i wnioski zostaną przedstawione w przystępnej formie w następnym sprawozdaniu.
+
+
+
+
 	
 
 
