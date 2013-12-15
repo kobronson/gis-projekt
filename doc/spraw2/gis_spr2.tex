@@ -18,7 +18,7 @@
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{3mm plus1mm minus1mm}
 
-\geometry{verbose,a4paper,tmargin=2.4cm,bmargin=2.4cm,lmargin=2.4cm,rmargin=2.4cm}
+\geometry{verbose,a4paper,tmargin=2.3cm,bmargin=2.3cm,lmargin=2.4cm,rmargin=2.4cm}
 \usepackage{graphicx} % wstawianie obrazkow
 
 
@@ -98,8 +98,7 @@ Borůvki.
 
 	\subsection{Algorytm Prima}
 %http://www.comp.dit.ie/rlawlor/alg_ds/mst/prim.pdf
-Algorytm Prima został opracowany w 1930 roku przez Vojtěcha Jarníka. Algorytm znajduje minimalne drzewo rozpinające w spójnym, nieskierowanym grafie ważonym. Należy on do grupy algorytmów zachłannych. Ze zbioru wierchołków $V$ w grafie, wybierany jest jeden, który będzie początkiem drzewa rozpinającego. Następnie do drzewa dodawana jest   
-kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierzchołki w drzewie z wierchołkami spoza dzrewa. Krok ten jest powtarzany do uzyskania MST.
+Algorytm Prima został opracowany w 1930 roku przez Vojtěcha Jarníka. Algorytm znajduje minimalne drzewo rozpinające w spójnym, nieskierowanym grafie ważonym. Należy on do grupy algorytmów zachłannych.
 \begin{algorithm}
 \caption{{\bf Algorytm Prima}, znajdowanie MST}
 \begin{algorithmic}[!h]
@@ -112,9 +111,10 @@ kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierz
 \RETURN $E_{new}$ oraz $V_{new}$ opisujące minimalne drzewo rozpinające grafu $G$. 
 \end{algorithmic}
 \end{algorithm}	
+\FloatBarrier
 
-
-
+ Ze zbioru wierchołków $V$ w grafie, wybierany jest jeden, który będzie początkiem drzewa rozpinającego. Następnie do drzewa dodawana jest   
+kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierzchołki w drzewie z wierchołkami spoza dzrewa. Krok ten jest powtarzany do uzyskania MST.
 
 	
 	\subsection{Algorytm Kruskala}
@@ -122,9 +122,7 @@ kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierz
 %http://www.comp.dit.ie/rlawlor/Alg_DS/MST/Kruskal.pdf
 
 Algorytm Kruskala został opublikowany w 1956 roku przez Josepha Kruskala. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu ważonego. Należy
-on do grupy algorytmów zachłannych. Budowany jest las w którym każdy wierzchołek stanowi oddzielne drzewo oraz zbiór zawierający wszyskie krawędzie grafu.
-Następnie ze zbioru usuwana jest krawędź o najmniejszej wadze, jeśli krawędź łączy dwa oddzielne drzewa w lesie	to należy te drzewa połączyć w jedno za pomocą
-krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarzany do uzyskania MST.
+on do grupy algorytmów zachłannych. 
 
 \begin{algorithm}
 \caption{{\bf Algorytm Kruskala}, znajdowanie MST - do opisu użyta \textit{struktura zbiorów rozłącznych}}
@@ -146,19 +144,17 @@ krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarza
 \end{algorithm}
 \FloatBarrier
 
+Budowany jest las w którym każdy wierzchołek stanowi oddzielne drzewo oraz zbiór zawierający wszyskie krawędzie grafu.
+Następnie ze zbioru usuwana jest krawędź o najmniejszej wadze, jeśli krawędź łączy dwa oddzielne drzewa w lesie	to należy te drzewa połączyć w jedno za pomocą
+krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarzany do uzyskania MST.
 
-
-	\subsection{Algorytm Borůvki}.
+	\subsection{Algorytm Borůvki}
 	
 %http://sajun.org/index.php/Boruvka%27s_algorithm  
 
 Algorytm Borůvki został opublikowany przez Otakara Borůvkę w 1926 roku jako metoda efektywnej konstrukcji sieci 
 energetycznych. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu nieskierowanego i jest algorytmem zachłannym.
-Wagi krawędzi powinny być rózne, jeśli są jednak takie same to można je rozróżniać przyporządkowujac im odpowiednie etykiety.
-Z krawędzi grafu tworzony jest las, taki że kazda krawędź tworzy oddzielne drzewo. Następnie póki las ma więcej niż jeden komponent $C$, dla każdego
-z komponentów powtzarzany jest następujący krok: tworzony jest pusty zbiór wierchołków $S$, następnie dla każdej krawędzi występującej w komponencie znajdowana
-jest krawędź o najmniejszej wadze łącząca wirzchołek z $C$ z wierchołakiem spoza $C$ i dodawana jest do zbioru krawędzi $S$. Następnie krawędź o najmniejszej wadze ze zbioru
-$S$ dodawana jest do lasu.
+
 
 	
 \begin{algorithm}
@@ -176,10 +172,13 @@ $S$ dodawana jest do lasu.
 \end{algorithmic}
 \end{algorithm}
 
-
-
 \FloatBarrier
 
+Wagi krawędzi powinny być rózne, jeśli są jednak takie same to można je rozróżniać przyporządkowujac im odpowiednie etykiety.
+Z krawędzi grafu tworzony jest las, taki że kazda krawędź tworzy oddzielne drzewo. Następnie póki las ma więcej niż jeden komponent $C$, dla każdego
+z komponentów powtzarzany jest następujący krok: tworzony jest pusty zbiór wierchołków $S$, następnie dla każdej krawędzi występującej w komponencie znajdowana
+jest krawędź o najmniejszej wadze łącząca wirzchołek z $C$ z wierchołakiem spoza $C$ i dodawana jest do zbioru krawędzi $S$. Następnie krawędź o najmniejszej wadze ze zbioru
+$S$ dodawana jest do lasu.
 \section{Planowana złożoność obliczeniowa i struktury danych}
 
 We wszystkich przedstawionych algorytmach sortowanie krawędzi rosnąco pochłania 
@@ -198,7 +197,7 @@ Do reprezentacji grafu użyte zostaną listy sąsiedztwa dla poszczególnych wie
 
 \begin{tabular}{|l|c|c|}
 	\hline 
-  {\bf Typ} & {\bf Opis} & {\bf Rozmiar [byte]}\\
+  {\bf Typ} & {\bf Opis} & {\bf Rozmiar [bajt]}\\
   \hline 
   \it{uint16\_t node\_id} & identyfikator węzła & 2 \\
   \hline
@@ -211,17 +210,25 @@ Do reprezentacji grafu użyte zostaną listy sąsiedztwa dla poszczególnych wie
 Struktura {\it TGraph}, gdzie kolejne indeksy tablicy to odpowiednio kolejne identyfikatory węzłów:
 
 \begin{tabular}{|l|c|c|}
-\hline {\bf Typ} & {\bf Opis} & {\bf Rozmiar [byte]}\\
+\hline {\bf Typ} & {\bf Opis} & {\bf Rozmiar [bajt]}\\
   \hline 
    \it{struct TNode* L[MAX\_UNIT16]  } & lista sąsiedztwa & MAX\_UNIT16 * 4 lub 8 \\
   \hline
 \end{tabular} 
 
-Można oszacować zużycie pamięci przez graf $G=(V,E)$ dla 32 bitowej architektury procesora: $\text{MAX\_UNIT16}\times4+7\times|E|$ bajtów.
+Można oszacować zużycie pamięci przez graf $G=(V,E)$ dla 32 bitowej architektury procesora $\text{MAX\_UNIT16}\times4+7\times|E|$ bajtów.
 
 
 
 \section{Założenia programu}
+Grafy zadane są w postaci plików tekstowych, gdzie pierwsza 
+i druga kolumna zawierają identyfikator 2 różnych dwówierzchołków
+grafu pomiędzy, którymi istnieje krawędź, a trzecia kolumna reprezentuje
+wagę krawędzi.
+
+
+
+
 \section{Projekt testów}
 %testy dla grafów w zazleznosci od ich gestosci
 	
