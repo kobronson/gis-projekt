@@ -97,7 +97,8 @@ Borůvki.
 
 	\subsection{Algorytm Prima}
 %http://www.comp.dit.ie/rlawlor/alg_ds/mst/prim.pdf
-
+Algorytm Prima został opracowany w 1930 roku przez Vojtěcha Jarníka. Algorytm znajduje minimalne drzewo rozpinające w spójnym, nieskierowanym grafie ważonym. Należy on do grupy algorytmów zachłannych. Ze zbioru wierchołków $V$ w grafie, wybierany jest jeden, który będzie początkiem drzewa rozpinającego. Następnie do drzewa dodawana jest   
+kolejna krawędź - wybierana z krawędźi o najmiejszej wadze, łącząca wierzchołki w drzewie z wierchołkami spoza dzrewa. Krok ten jest powtarzany do uzyskania MST.
 \begin{algorithm}
 \caption{{\bf Algorytm Prima}, znajdowanie MST}
 \begin{algorithmic}[!h]
@@ -121,12 +122,17 @@ Złozoność obliczeniowa w zaleznosci od implementacji:
 
 
 	
-	\subsection{Algorytm Kruskalla}
+	\subsection{Algorytm Kruskala}
 	
-%http://www.comp.dit.ie/rlawlor/Alg_DS/MST/Kruskal.pdf	
-	
+%http://www.comp.dit.ie/rlawlor/Alg_DS/MST/Kruskal.pdf
+
+Algorytm Kruskala został opublikowany w 1956 roku przez Josepha Kruskala. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu ważonego. Należy
+on do grupy algorytmów zachłannych. Budowany jest las w którym każdy wierzchołek stanowi oddzielne drzewo oraz zbiór zawierający wszyskie krawędzie grafu.
+Następnie ze zbioru usuwana jest krawędź o najmniejszej wadze, jeśli krawędź łączy dwa oddzielne drzewa w lesie	to należy te drzewa połączyć w jedno za pomocą
+krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarzany do uzyskania MST.
+
 \begin{algorithm}
-\caption{{\bf Algorytm Kruskalla}, znajdowanie MST - do opisu użyta \textit{struktura zbiorów rozłącznych}}
+\caption{{\bf Algorytm Kruskala}, znajdowanie MST - do opisu użyta \textit{struktura zbiorów rozłącznych}}
 \begin{algorithmic}[!h]
 \REQUIRE Spójny graf $G=(V,E)$ ,$V \neq \emptyset$. 
 \ENSURE $A=\emptyset$ zbiór zawierający krawędzie MST
@@ -149,7 +155,16 @@ Złozoność obliczeniowa ${\bf O}(|E| log |V|)$
 
 	\subsection{Algorytm Borůvki}.
 	
-%http://sajun.org/index.php/Boruvka%27s_algorithm
+%http://sajun.org/index.php/Boruvka%27s_algorithm  
+
+Algorytm Borůvki został opublikowany przez Otakara Borůvkę w 1926 roku jako metoda efektywnej konstrukcji sieci 
+energetycznych. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu nieskierowanego i jest algorytmem zachłannym.
+Wagi krawędzi powinny być rózne, jeśli są jednak takie same to można je rozróżniać przyporządkowujac im odpowiednie etykiety.
+Z krawędzi grafu tworzony jest las, taki że kazda krawędź tworzy oddzielne drzewo. Następnie póki las ma więcej niż jeden komponent $C$, dla każdego
+z komponentów powtzarzany jest następujący krok: tworzony jest pusty zbiór wierchołków $S$, następnie dla każdej krawędzi występującej w komponencie znajdowana
+jest krawędź o najmniejszej wadze łącząca wirzchołek z $C$ z wierchołakiem spoza $C$ i dodawana jest do zbioru krawędzi $S$. Następnie krawędź o najmniejszej wadze ze zbioru
+$S$ dodawana jest do lasu.
+
 	
 \begin{algorithm}
 \caption{{\bf Algorytm Borůvki}, znajdowanie MST}
@@ -175,6 +190,7 @@ Złozoność obliczeniowa ${\bf O}(|E| log |V|)$.
 \section{Struktury danych}
 \section{Założenia programu}
 \section{Projekt testów}
+%testy dla grafów w zazleznosci od ich gestosci
 	
 	
 
