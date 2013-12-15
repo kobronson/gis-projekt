@@ -47,6 +47,7 @@
 \renewcommand{\algorithmictrue}{\textbf{true}}
 \renewcommand{\algorithmicfalse}{\textbf{false}}
 
+    
 \floatname{algorithm}{}
 \renewcommand\thealgorithm{}
 
@@ -65,7 +66,9 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\bibliographystyle{alpha}
+\bibliographystyle{plain}
+
+
 %%%%%%%
 
 \maketitle 
@@ -98,7 +101,7 @@ Borůvki.
 
 	\subsection{Algorytm Prima}
 %http://www.comp.dit.ie/rlawlor/alg_ds/mst/prim.pdf
-Algorytm Prima został opracowany w 1930 roku przez Vojtěcha Jarníka. Algorytm znajduje minimalne drzewo rozpinające w spójnym, nieskierowanym grafie ważonym. Należy on do grupy algorytmów zachłannych.
+Algorytm Prima został opracowany w 1930 roku przez Vojtěcha Jarníka \cite{algo:prim}. Algorytm znajduje minimalne drzewo rozpinające w spójnym, nieskierowanym grafie ważonym. Należy on do grupy algorytmów zachłannych.
 \begin{algorithm}
 \caption{{\bf Algorytm Prima}, znajdowanie MST}
 \begin{algorithmic}[!h]
@@ -121,7 +124,7 @@ kolejna krawędź - wybierana z krawędzi o najmniejszej wadze, łącząca wierz
 	
 %http://www.comp.dit.ie/rlawlor/Alg_DS/MST/Kruskal.pdf
 
-Algorytm Kruskala został opublikowany w 1956 roku przez Josepha Kruskala. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu ważonego. Należy
+Algorytm Kruskala został opublikowany w 1956 roku przez Josepha Kruskala \cite{algo:kru}. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu ważonego. Należy
 on do grupy algorytmów zachłannych. 
 
 \begin{algorithm}
@@ -152,7 +155,7 @@ krawędzi. W przeciwnym wypadku krawędź jest odrzucana. Krok ten jest powtarza
 	
 %http://sajun.org/index.php/Boruvka%27s_algorithm  
 
-Algorytm Borůvki został opublikowany przez Otakara Borůvkę w 1926 roku jako metoda efektywnej konstrukcji sieci 
+Algorytm Borůvki został opublikowany przez Otakara Borůvkę \cite{algo:bor} w 1926 roku jako metoda efektywnej konstrukcji sieci 
 energetycznych. Algorytm znajduje minimalne drzewo rozpinające dla spójnego grafu nieskierowanego i jest algorytmem zachłannym.
 
 
@@ -268,6 +271,7 @@ Najciekawsze wyniki i wnioski zostaną przedstawione w przystępnej formie w nas
 
 %BIBLIOGRAFIA
 \nocite{*}
+\renewcommand\refname{\section{Bibliografia}}
 \bibliography{bibliografia}
 
 
