@@ -2,16 +2,25 @@
 #define GRAPH_H_
 
 #include <stdint.h>
+#include <stdio.h>
 
 struct t_Edge
 {
-
-	uint16_t nodeId; //vertice on the other side of the edge
+	uint16_t dst_id; //vertice on the other side of the edge
     uint8_t  weight; //weight of the edge	
-
+	struct t_Edge *next;
 } Edge;
 
-Edge  graph[ UINT16_MAX ];
+typedef struct t_Edge* Graph;
+
+
+
+uint16_t getVerticesCount(char *filename);
+Graph* createGraph(char *filename);
+void addEdge(Graph g,uint16_t dst, uint16_t wght);
+
+
+
  
 
 

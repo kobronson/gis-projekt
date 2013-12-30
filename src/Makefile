@@ -1,10 +1,10 @@
-CFLAGS =	
+CFLAGS = -g	
 
-OBJS = graph.o
+OBJS = graph.o main.o
 
 LIBS =
 
-TARGET =	main
+TARGET = g_algo
 
 $(TARGET):	$(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LIBS) 
