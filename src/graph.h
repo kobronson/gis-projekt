@@ -17,7 +17,8 @@ typedef struct t_Edge* Graph;
 
 uint16_t getVerticesCount(char *filename);
 Graph* createGraph(char *filename);
-void addEdge(Graph g,uint16_t dst, uint16_t wght);
+void addEdge(Graph *g, uint16_t dst, uint16_t wght);
+void showGraph(Graph* g, uint16_t size);
 
 
 

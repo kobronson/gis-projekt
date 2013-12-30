@@ -10,6 +10,9 @@
 
 #define MAX_CHARS 64
 
+#define DEBUG printf("%s:%d\n",__PRETTY_FUNCTION__,__LINE__);
+
+
 uint16_t getVerticesCount(char *filename)
 {
 	FILE *fp;
@@ -51,6 +54,7 @@ Graph* createGraph(char *filename)
 	g  = malloc( size * sizeof( struct t_Edge *));
 	fp = fopen(filename, "r");
 	
+	DEBUG
 	for(i=0;i<size;i++)
 	{
 		g[i] = NULL ;
@@ -58,7 +62,8 @@ Graph* createGraph(char *filename)
 	
 	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
 	{
-		addEdge(g[src_id], dst_id, weight);
+		
+		addEdge(&(g[src_id]), dst_id, weight);
 	}
 	
 	
@@ -66,25 +71,46 @@ Graph* createGraph(char *filename)
 	return g;
 }
 
-void addEdge(Graph g,uint16_t dst, uint16_t wght)
+void addEdge(Graph *g,uint16_t dst, uint16_t wght)
 {
 	struct t_Edge* tmp;
 	
+	printf("Adding %d %d\n",dst, wght);
+	tmp = malloc(sizeof(struct t_Edge));
 	tmp->dst_id=dst;
 	tmp->weight=wght;
 	tmp->next=NULL;
 	
 	if(g)
 	{
-		tmp->next =g;
-		g = tmp;
+		tmp->next =*g;
+		*g = tmp;
 	}
 	else
 	{
-		g= tmp;
+		*g= tmp;
 	
 	}
 
+}
+
+void showGraph(Graph* g, uint16_t size)
+{
+	uint16_t i;
+	struct t_Edge* tmp;
+	for(i=0;i<size;i++)
+	{
+		
+		tmp = g[i];
+		printf("Node %d:",i);
+		while(tmp != NULL)
+		{
+		
+			printf("%d",tmp->dst_id);
+			tmp=tmp->next;
+		}
+		printf("\n");		
+	}
 }
 
 
