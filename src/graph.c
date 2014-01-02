@@ -8,6 +8,7 @@
 #include "graph.h"
 #include "debug.h"
 #include <stdlib.h>
+#include <inttypes.h>
 
 #define MAX_CHARS 64
 
@@ -22,7 +23,7 @@ uint16_t getVerticesCount(char *filename)
 	
 	
 	fp = fopen(filename, "r");
-	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
+	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
 	{
 		if(src_id > v_count) v_count = src_id;
 		if(dst_id > v_count) v_count = dst_id;			
@@ -53,7 +54,7 @@ Graph* createGraph(char *filename)
 		g[i] = NULL ;
 	}
 	
-	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
+	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
 	{
 		
 		addEdge(&(g[src_id-1]), dst_id, weight);
