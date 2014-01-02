@@ -6,11 +6,12 @@
  */
 
 #include "graph.h"
+#include "debug.h"
 #include <stdlib.h>
 
 #define MAX_CHARS 64
 
-#define DEBUG printf("%s:%d\n",__PRETTY_FUNCTION__,__LINE__);
+
 
 
 uint16_t getVerticesCount(char *filename)
@@ -54,7 +55,7 @@ Graph* createGraph(char *filename)
 	g  = malloc( size * sizeof( struct t_Edge *));
 	fp = fopen(filename, "r");
 	
-	DEBUG
+
 	for(i=0;i<size;i++)
 	{
 		g[i] = NULL ;
