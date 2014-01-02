@@ -24,14 +24,11 @@ uint16_t getVerticesCount(char *filename)
 	fp = fopen(filename, "r");
 	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
 	{
-		printf("Graph %d\n",src_id);
 		if(src_id > v_count) v_count = src_id;
-		else if(dst_id > v_count) v_count = dst_id;
-
-			
+		if(dst_id > v_count) v_count = dst_id;			
 	}
 	fclose(fp);
-	printf("Graph contains %u vertices\n", v_count);
+	printf("Graph contains %d vertices\n", v_count);
 	
 	
 	return v_count;
@@ -41,12 +38,7 @@ uint16_t getVerticesCount(char *filename)
 Graph* createGraph(char *filename)
 {
 	Graph  *g;
-	FILE *fp;
-	
-	
-	
-	
-	
+	FILE *fp;	
 	char line[MAX_CHARS];
 	uint16_t src_id, dst_id, weight,i;
 	uint16_t size;
@@ -64,7 +56,8 @@ Graph* createGraph(char *filename)
 	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
 	{
 		
-		addEdge(&(g[src_id]), dst_id, weight);
+		addEdge(&(g[src_id-1]), dst_id, weight);
+		addEdge(&(g[dst_id-1]), src_id, weight);
 	}
 	
 	
@@ -76,7 +69,7 @@ void addEdge(Graph *g,uint16_t dst, uint16_t wght)
 {
 	struct t_Edge* tmp;
 	
-	printf("Adding %d %d\n",dst, wght);
+	//printf("Adding %d %d\n",dst, wght);
 	tmp = malloc(sizeof(struct t_Edge));
 	tmp->dst_id=dst;
 	tmp->weight=wght;
@@ -89,7 +82,7 @@ void addEdge(Graph *g,uint16_t dst, uint16_t wght)
 	}
 	else
 	{
-		*g= tmp;
+		*g = tmp;
 	
 	}
 
@@ -103,12 +96,12 @@ void showGraph(Graph* g, uint16_t size)
 	{
 		
 		tmp = g[i];
-		printf("Node %d:",i);
-		while(tmp != NULL)
-		{
+		printf("Node %d:",i+1);
+		while(tmp != NULL)		{
 		
-			printf("%d",tmp->dst_id);
+			printf(" (%d %d)-%d",i+1,tmp->dst_id, tmp->weight);
 			tmp=tmp->next;
+			if(tmp) printf(",");
 		}
 		printf("\n");		
 	}

@@ -16,9 +16,8 @@ int main(int argc, char *argv[])
 	}
 	
 	size = getVerticesCount(argv[1]);
-	
 	main_graph = createGraph(argv[1]);
-	printf("SHOW\n");
+	
 	showGraph(main_graph, size);
 	
 	return 0;
