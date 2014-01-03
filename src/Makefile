@@ -1,6 +1,6 @@
 CFLAGS = -g	
 
-OBJS = graph.o main.o
+OBJS = graph.o main.o set.o
 
 LIBS =
 

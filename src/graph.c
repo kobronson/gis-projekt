@@ -55,9 +55,9 @@ Graph* createGraph(char *filename)
 	}
 	
 	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
-	{
-		
+	{		
 		addEdge(&(g[src_id-1]), dst_id, weight);
+		if(src_id != dst_id)
 		addEdge(&(g[dst_id-1]), src_id, weight);
 	}
 	
