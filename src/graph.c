@@ -36,17 +36,14 @@ uint16_t getVerticesCount(char *filename)
 	
 }
 
-Graph* createGraph(char *filename)
+Graph* createGraph(uint16_t size)
 {
-	Graph  *g;
-	FILE *fp;	
-	char line[MAX_CHARS];
+	Graph  *g;	
 	uint16_t src_id, dst_id, weight,i;
-	uint16_t size;
 	
-	size = getVerticesCount(filename);
+	
 	g  = malloc( size * sizeof( struct t_Edge *));
-	fp = fopen(filename, "r");
+	
 	
 
 	for(i=0;i<size;i++)
@@ -54,6 +51,17 @@ Graph* createGraph(char *filename)
 		g[i] = NULL ;
 	}
 	
+	return g;
+}
+
+Graph* fillGraph(Graph* g, uint16_t size, char *filename)
+{
+	FILE *fp;	
+	char line[MAX_CHARS];
+	uint16_t src_id, dst_id, weight;
+	
+	
+	fp = fopen(filename, "r");
 	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
 	{		
 		addEdge(&(g[src_id-1]), dst_id, weight);
