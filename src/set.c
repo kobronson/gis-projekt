@@ -19,3 +19,13 @@ void addElement(struct t_Set *v_set, uint16_t element)
 	v_set->set[v_set->size] = element;
 	v_set->size++;
 }
+
+uint16_t exists(struct t_Set *v_set, uint16_t element)
+{
+	uint16_t i;
+	for(i=0; i < v_set->size; i++)
+	{
+		if(v_set->set[i] == element) return 0;
+	}
+	return 1;
+}

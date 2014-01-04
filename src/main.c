@@ -1,6 +1,7 @@
 
 #include "graph.h"
 #include "set.h"
+#include "prim.h"
 
 
 int main(int argc, char *argv[])
@@ -21,6 +22,8 @@ int main(int argc, char *argv[])
 	main_graph = createGraph(size);
 	main_graph = fillGraph(main_graph, size, argv[1]);
 	showGraph(main_graph, size);
+	
+	prim(main_graph, size);
 	
 	/*tmp = createSet(10);
 	addElement(tmp,1);
