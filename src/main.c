@@ -1,4 +1,5 @@
 
+#include "debug.h"
 #include "graph.h"
 #include "set.h"
 #include "prim.h"
@@ -6,7 +7,7 @@
 
 int main(int argc, char *argv[])
 {
-	Graph* main_graph;
+	Graph* main_graph, *result_graph;
 	struct t_Set *tmp;
     uint16_t size;
 	
@@ -23,7 +24,12 @@ int main(int argc, char *argv[])
 	main_graph = fillGraph(main_graph, size, argv[1]);
 	showGraph(main_graph, size);
 	
-	prim(main_graph, size);
+	result_graph = prim(main_graph, size);
+	printf("\n========================================\n");
+	showGraph(result_graph, size);
+	
+	
+	
 	
 	/*tmp = createSet(10);
 	addElement(tmp,1);

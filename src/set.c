@@ -1,4 +1,4 @@
-
+#include<stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "set.h"
@@ -25,7 +25,10 @@ uint16_t exists(struct t_Set *v_set, uint16_t element)
 	uint16_t i;
 	for(i=0; i < v_set->size; i++)
 	{
-		if(v_set->set[i] == element) return 0;
+		if(v_set->set[i] == element) 
+		{
+			return 1;
+		}
 	}
-	return 1;
+	return 0;
 }
