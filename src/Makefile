@@ -1,10 +1,10 @@
 CFLAGS = -g	
 
-OBJS = graph.o main.o set.o prim.o
+OBJS = graph.o main.o set.o prim.o kruskal.o
 
 LIBS =
 
-TARGET = g_algo
+TARGET = mst
 
 $(TARGET):	$(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(LIBS) 
