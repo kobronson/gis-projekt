@@ -7,10 +7,10 @@
 Graph* prim(Graph *graph, uint16_t size)
 {
 	Graph* e_new;
-	struct t_Set *v_new;
+	struct t_VSet *v_new;
 	uint16_t i,src_id;
 	uint8_t wght;
-	struct t_Edge *tmp, *min_e;
+	struct t_Vertice *tmp, *min_e;
 	
 	
 	/*Prim init*/

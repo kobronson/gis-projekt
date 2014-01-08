@@ -42,7 +42,7 @@ Graph* createGraph(uint16_t size)
 	uint16_t src_id, dst_id, weight,i;
 	
 	
-	g  = malloc( size * sizeof( struct t_Edge *));
+	g  = malloc( size * sizeof( struct t_Vertice *));
 	
 	
 
@@ -76,9 +76,9 @@ Graph* fillGraph(Graph* g, uint16_t size, char *filename)
 
 void addEdge(Graph *g,uint16_t dst, uint16_t wght)
 {
-	struct t_Edge* tmp;
+	struct t_Vertice* tmp;
 	
-	tmp = malloc(sizeof(struct t_Edge));
+	tmp = malloc(sizeof(struct t_Vertice));
 	tmp->dst_id=dst;
 	tmp->weight=wght;
 	tmp->next=NULL;
@@ -99,7 +99,7 @@ void addEdge(Graph *g,uint16_t dst, uint16_t wght)
 void showGraph(Graph* g, uint16_t size)
 {
 	uint16_t i;
-	struct t_Edge* tmp;
+	struct t_Vertice* tmp;
 	for(i=0;i<size;i++)
 	{
 		

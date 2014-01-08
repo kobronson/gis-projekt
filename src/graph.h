@@ -4,14 +4,19 @@
 #include <stdint.h>
 #include <stdio.h>
 
-struct t_Edge
-{
+struct t_Vertice{
 	uint16_t dst_id; //vertice on the other side of the edge
     uint8_t  weight; //weight of the edge	
-	struct t_Edge *next;
-} Edge;
+	struct t_Vertice *next;
+} Vertice;
 
-typedef struct t_Edge* Graph;
+struct t_Edge{
+	uint16_t src_id;
+	uint16_t dst_id;
+	uint8_t  weight;
+};
+
+typedef struct t_Vertice* Graph;
 
 
 
