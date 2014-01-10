@@ -15,8 +15,7 @@
 
 
 
-uint16_t getVerticesCount(char *filename)
-{
+uint16_t getVerticesCount(char *filename){
 	FILE *fp;
 	uint16_t src_id = 0, dst_id = 0, weight;
 	uint16_t v_count = 0;
@@ -36,8 +35,7 @@ uint16_t getVerticesCount(char *filename)
 	
 }
 
-Graph* createGraph(uint16_t size)
-{
+Graph* createGraph(uint16_t size){
 	Graph  *g;	
 	uint16_t src_id, dst_id, weight,i;
 	
@@ -54,19 +52,18 @@ Graph* createGraph(uint16_t size)
 	return g;
 }
 
-Graph* fillGraph(Graph* g, uint16_t size, char *filename)
-{
-	FILE *fp;	
-	char line[MAX_CHARS];
+Graph* fillGraph(Graph* g, uint16_t size, char *filename){
+
+	FILE *fp;
 	uint16_t src_id, dst_id, weight;
 	
 	
 	fp = fopen(filename, "r");
 	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
 	{		
-		addEdge(&(g[src_id]), dst_id, weight);
+		addVertice(&(g[src_id]), dst_id, weight);
 		if(src_id != dst_id)
-		addEdge(&(g[dst_id]), src_id, weight);
+		addVertice(&(g[dst_id]), src_id, weight);
 	}
 	
 	
@@ -74,8 +71,7 @@ Graph* fillGraph(Graph* g, uint16_t size, char *filename)
 	return g;
 }
 
-void addEdge(Graph *g,uint16_t dst, uint16_t wght)
-{
+void addVertice(Graph *g,uint16_t dst, uint16_t wght){
 	struct t_Vertice* tmp;
 	
 	tmp = malloc(sizeof(struct t_Vertice));
@@ -96,8 +92,7 @@ void addEdge(Graph *g,uint16_t dst, uint16_t wght)
 
 }
 
-void showGraph(Graph* g, uint16_t size)
-{
+void showGraph(Graph* g, uint16_t size){
 	uint16_t i;
 	struct t_Vertice* tmp;
 	for(i=0;i<size;i++)
@@ -114,6 +109,82 @@ void showGraph(Graph* g, uint16_t size)
 		printf("\n");		
 	}
 }
+
+
+uint16_t getEdgeCount(char *filename){
+
+	FILE *fp;
+	uint16_t src_id = 0, dst_id = 0, weight;
+	uint16_t e_count = 0;
+	
+	
+	fp = fopen(filename, "r");
+	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
+	{
+		e_count++;		
+	}
+	fclose(fp);
+	printf("Graph contains %d edges\n", e_count);
+	
+	
+	return e_count;
+
+}
+
+
+
+
+EGraph* createEGraph(uint16_t v_size,uint16_t e_size){
+
+	EGraph* egraph;
+	egraph = malloc(sizeof(EGraph));
+
+	egraph->edges = malloc(e_size*sizeof(struct t_Edge));
+	egraph->v_count = v_size;
+	egraph->e_count = e_size;
+	return egraph;	
+
+}
+EGraph* fillEGraph(EGraph* egraph, char *filename){
+
+	FILE *fp;	
+	uint16_t src_id, dst_id, weight, i = 0 ;
+	struct t_Edge *tmp; 
+	
+	
+	fp = fopen(filename, "r");
+	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
+	{		
+		tmp = &egraph->edges[i];
+		tmp->src_id = src_id;
+		tmp->dst_id = dst_id;
+		tmp->weight = weight;
+		
+		i++;
+	}
+	
+	
+	fclose(fp);  
+	return egraph;
+	
+
+	
+}
+
+void showEGraph(EGraph* eg, uint16_t size){
+	uint16_t i;
+	struct t_Edge* tmp;
+	for(i=0;i<size;i++){
+	
+		
+		tmp = &eg->edges[i];
+		printf(" (%d %d)-%d",tmp->src_id,tmp->dst_id, tmp->weight);
+			
+		printf("\n");		
+	}
+}
+
+
 
 
 
