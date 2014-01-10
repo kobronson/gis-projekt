@@ -5,8 +5,8 @@
 #include "graph.h"
 
 
-
-Graph* kruskal(Graph *graph, uint16_t size);
+int compareEdges(const void* edge_1, const void* edge_2);
+EGraph* kruskal(EGraph *graph);
 
 
 #endif /* KRUSKAL_H_ */
