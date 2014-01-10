@@ -10,7 +10,7 @@ Graph* prim(Graph *graph, uint16_t size)
 	struct t_Set *v_new;
 	uint16_t i,src_id;
 	uint8_t wght;
-	struct t_Edge *tmp, *min_e;
+	struct t_Vertice *tmp, *min_e;
 	
 	
 	/*Prim init*/
@@ -44,8 +44,8 @@ Graph* prim(Graph *graph, uint16_t size)
 		}
 		
 		addElement(v_new, min_e->dst_id);
-		addEdge(&(e_new[src_id]), min_e->dst_id, min_e->weight);
-		addEdge(&(e_new[min_e->dst_id]), src_id, min_e->weight);
+		addVertice(&(e_new[src_id]), min_e->dst_id, min_e->weight);
+		addVertice(&(e_new[min_e->dst_id]), src_id, min_e->weight);
 	}
 	
 	return e_new;
