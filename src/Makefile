@@ -1,6 +1,6 @@
 CFLAGS = -g	
 
-OBJS = graph.o main.o set.o prim.o kruskal.o
+OBJS = graph.o main.o set.o prim.o kruskal.o disj.o
 
 LIBS =
 
