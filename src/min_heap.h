@@ -11,7 +11,7 @@
 
 struct t_MinHNode
 {
-    uint16_t vertice;
+    uint16_t element;
     uint16_t key;
 };
  
@@ -26,8 +26,11 @@ struct t_MinH
 
 
 struct t_MinHNode* mh_newMinHNode(uint16_t v, uint16_t key);
-struct t_MinH* mh_create_MinH(uint16_t h_len);
+struct t_MinH* mh_createMinH(uint16_t h_len);
 void mh_swap(struct t_MinHNode** a, struct t_MinHNode** b);
+void mh_heapify(struct t_MinH* min_heap, uint16_t idx);
+struct t_MinHNode* mh_cutMinHNode(struct t_MinH* min_heap);
+void mh_decreaseKey(struct t_MinH* min_heap, uint16_t v, uint16_t key);
 
 
 
