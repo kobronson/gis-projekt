@@ -3,9 +3,7 @@
 #include "debug.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include"disj.h"
-
-
+#include "disj.h"
 
 
 

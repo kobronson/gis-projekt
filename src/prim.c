@@ -4,50 +4,60 @@
 #include <stdio.h>
 
 
-Graph* prim(Graph *graph, uint16_t size)
-{
-	Graph* e_new;
-	struct t_Set *v_new;
-	uint16_t i,src_id;
-	uint8_t wght;
-	struct t_Vertice *tmp, *min_e;
+Graph* prim(Graph *graph, uint16_t size){
 	
+	struct t_MinH* min_heap;
+	struct t_MinHNode* mh_node;	
+    int32_t parent[size];   //wynik
+    uint16_t key[size];      
+	uint16_t i;
+	uint16_t u,v2;
+	struct t_Vertice* adjc_v;
+ 
 	
-	/*Prim init*/
-	v_new = createSet(size);
-	addElement(v_new, 0);
-	e_new = createGraph (size);
-	while(v_new->size != size){
+    
+     min_heap = mh_createMinH(size);
+ 
+    
+	
+	// inicjalizacja struktur danych
+	key[0] = 0;
+    min_heap->mh_nodes[0] = mh_newMinHNode(0, key[0]);
+    min_heap->mh_pos[0]   = 0;
+ 	for (i = 1; i < size; ++i){
+        
+		parent[i] = -1;
+		min_heap->mh_nodes[i] = mh_newMinHNode(i, key[i]);
+        key[i] = UINT16_MAX;        
+        min_heap->mh_pos[i] = i;
+    }
+	min_heap->mh_size = size;
+	
+	while (min_heap->mh_size != 0)    {
+        // znajdz wierzcholek o najmniejszym kluczcu
+        mh_node = mh_cutMinHNode(min_heap);
+        u = mh_node->element; // zapamietaj id
+  
+		adjc_v = graph[u];
+        
+		while (adjc_v != NULL){
 		
-		wght = UINT8_MAX;
 		
-		/* Find min weight edge  (u,v)*/
-		for(i=0; i < v_new->size;i++){
-			
-			
-			tmp = graph[v_new->set[i]];
-			while(tmp){   
-				// v is not in V_new
-				if(!exists(v_new,tmp->dst_id)) {
-					
-					if(tmp->weight < wght) {
-						min_e = tmp;
-						wght = min_e->weight;
-						src_id = v_new->set[i]; 						
-					}
-				}
-
-				tmp=tmp->next;				
-			}
-			
+		 v2 = adjc_v->dst_id;
+       
+            if ( min_heap->mh_pos[v2] < min_heap->mh_size && adjc_v->weight < key[v2]){
+                key[v2] = adjc_v->weight;
+                parent[v2] = u;
+                mh_decreaseKey(min_heap, v2, key[v2]);
+            }
+            adjc_v = adjc_v-> next;
+        }
 		
-		}
-		
-		addElement(v_new, min_e->dst_id);
-		addVertice(&(e_new[src_id]), min_e->dst_id, min_e->weight);
-		addVertice(&(e_new[min_e->dst_id]), src_id, min_e->weight);
 	}
 	
-	return e_new;
+	for ( i = 1; i < size; ++i)
+        printf("XXX  %d - %d\n", parent[i], i);
+		
+		
 	
 }

@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 	main_graph = createGraph(size);
 	main_graph = fillGraph(main_graph, size, argv[1]);
 	clock_gettime(CLOCK_MONOTONIC, &start);
-	//result_graph = prim(main_graph,size);
+	result_graph = prim(main_graph,size);
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	//showGraph(result_graph, size);
 	timeElapsed = timespecDiff(&end, &start);

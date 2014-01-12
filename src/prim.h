@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "graph.h"
+#include "min_heap.h"
 
 
 

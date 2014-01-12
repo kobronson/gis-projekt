@@ -14,13 +14,13 @@ struct t_MinHNode* mh_newMinHNode(uint16_t v, uint16_t key){
 }
  
 
-struct t_MinH* mh_createMinH(uint16_t h_len){
+struct t_MinH* mh_createMinH(uint16_t mh_len){
     struct t_MinH* min_heap;
     min_heap = malloc(sizeof(struct t_MinH));
-    min_heap->h_pos = malloc(h_len * sizeof(uint16_t));
-    min_heap->h_size = 0;
-    min_heap->h_len = h_len;
-    min_heap->h_nodes = malloc(h_len * sizeof(struct t_MinHNode*));
+    min_heap->mh_pos = malloc(mh_len * sizeof(uint16_t));
+    min_heap->mh_size = 0;
+    min_heap->mh_len = mh_len;
+    min_heap->mh_nodes = malloc(mh_len * sizeof(struct t_MinHNode*));
     return min_heap;
 }
 
@@ -43,21 +43,21 @@ void mh_heapify(struct t_MinH* min_heap, uint16_t idx){
     r = 2 * idx + 2;
  
 	//Znajdź najmniejszy 
-    if (l < min_heap->h_size && min_heap->h_nodes[l]->key < min_heap->h_nodes[min]->key ) min = l; 
-    if (r < min_heap->h_size && min_heap->h_nodes[r]->key < min_heap->h_nodes[min]->key ) min = r;
+    if (l < min_heap->mh_size && min_heap->mh_nodes[l]->key < min_heap->mh_nodes[min]->key ) min = l; 
+    if (r < min_heap->mh_size && min_heap->mh_nodes[r]->key < min_heap->mh_nodes[min]->key ) min = r;
  
 	//Napraw - zamien indeksy
     if (min != idx){
        
-        minNode = min_heap->h_nodes[min];
-        idxNode = min_heap->h_nodes[idx];
+        minNode = min_heap->mh_nodes[min];
+        idxNode = min_heap->mh_nodes[idx];
  
         
-        min_heap->h_pos[minNode->element] = idx;
-        min_heap->h_pos[idxNode->element] = min;
+        min_heap->mh_pos[minNode->element] = idx;
+        min_heap->mh_pos[idxNode->element] = min;
  
        
-        mh_swap(&min_heap->h_nodes[min], &min_heap->h_nodes[idx]);
+        mh_swap(&min_heap->mh_nodes[min], &min_heap->mh_nodes[idx]);
  
         mh_heapify(min_heap, min);
     }
@@ -71,18 +71,18 @@ struct t_MinHNode* mh_cutMinHNode(struct t_MinH* min_heap){
 	struct t_MinHNode *last_node;
 	struct t_MinHNode *root;
 	
-	if (min_heap->h_size) return NULL;
+	if (min_heap->mh_size == 0) return NULL;
  
    
-    root = min_heap->h_nodes[0];   
-    last_node = min_heap->h_nodes[min_heap->h_size - 1];
+    root = min_heap->mh_nodes[0];   
+    last_node = min_heap->mh_nodes[min_heap->mh_size - 1];
 	
-    min_heap->h_nodes[0] = last_node;
-    min_heap->h_pos[root->element] = min_heap->h_size-1;
-    min_heap->h_pos[last_node->element] = 0;
+    min_heap->mh_nodes[0] = last_node;
+    min_heap->mh_pos[root->element] = min_heap->mh_size-1;
+    min_heap->mh_pos[last_node->element] = 0;
  
    
-    min_heap->h_size--;
+    min_heap->mh_size--;
     mh_heapify(min_heap, 0);
  
     return root;
@@ -96,15 +96,15 @@ void mh_decreaseKey(struct t_MinH* min_heap, uint16_t v, uint16_t key)
     uint16_t it; 
 	
 	
-	it = min_heap->h_pos[v];
-    min_heap->h_nodes[it]->key = key;
+	it = min_heap->mh_pos[v];
+    min_heap->mh_nodes[it]->key = key;
  
  
-    while (it && min_heap->h_nodes[it]->key < min_heap->h_nodes[(it - 1) / 2]->key)    {
+    while (it && min_heap->mh_nodes[it]->key < min_heap->mh_nodes[(it - 1) / 2]->key)   {
         // zamien z rodzicem
-        min_heap->h_pos[min_heap->h_nodes[it]->element] = (it-1)/2;
-        min_heap->h_pos[min_heap->h_nodes[(it-1)/2]->element] = it;
-        mh_swap(&min_heap->h_nodes[it],  &min_heap->h_nodes[(it - 1) / 2]);
+        min_heap->mh_pos[min_heap->mh_nodes[it]->element] = (it-1)/2;
+        min_heap->mh_pos[min_heap->mh_nodes[(it-1)/2]->element] = it;
+        mh_swap(&min_heap->mh_nodes[it],  &min_heap->mh_nodes[(it - 1) / 2]);
 		it = (it - 1) / 2;
     }
 }
