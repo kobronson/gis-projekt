@@ -22,16 +22,18 @@ Graph* prim(Graph *graph, uint16_t size){
     
 	
 	// inicjalizacja struktur danych
+	
+ 	for (i = 1; i < size; ++i){
+        
+		parent[i] = -1;		
+        key[i] = UINT16_MAX;
+		min_heap->mh_nodes[i] = mh_newMinHNode(i, key[i]);        
+        min_heap->mh_pos[i] = i;
+    }
 	key[0] = 0;
     min_heap->mh_nodes[0] = mh_newMinHNode(0, key[0]);
     min_heap->mh_pos[0]   = 0;
- 	for (i = 1; i < size; ++i){
-        
-		parent[i] = -1;
-		min_heap->mh_nodes[i] = mh_newMinHNode(i, key[i]);
-        key[i] = UINT16_MAX;        
-        min_heap->mh_pos[i] = i;
-    }
+	
 	min_heap->mh_size = size;
 	
 	while (min_heap->mh_size != 0)    {
@@ -47,9 +49,8 @@ Graph* prim(Graph *graph, uint16_t size){
 		 v2 = adjc_v->dst_id;
        
             if ( min_heap->mh_pos[v2] < min_heap->mh_size && adjc_v->weight < key[v2]){
-                key[v2] = adjc_v->weight;
+                key[v2] = adjc_v->weight;				
                 parent[v2] = u;
-				weights[v2] = adjc_v->weight;
                 mh_decreaseKey(min_heap, v2, key[v2]);
             }
             adjc_v = adjc_v-> next;
@@ -58,7 +59,7 @@ Graph* prim(Graph *graph, uint16_t size){
 	}
 	
 	for ( i = 1; i < size; ++i)
-        printf(" (%d %d) %d\n", i, parent[i],weights[i]);
+        printf(" (%d %d)-%d\n", i, parent[i],key[i]);
 		
 		
 	
