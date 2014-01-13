@@ -19,7 +19,7 @@ EGraph* kruskal(EGraph *egraph){
 	
 	Graph *trees;
 	struct disj_set *ssets;
-	uint16_t i,edg,v1,v2,r;
+	uint16_t i,edg,v1,v2;
 	struct t_Edge *curr_edge;
 	EGraph *res_graph = createEGraph(egraph->v_count, egraph->v_count - 1);
 	
@@ -36,25 +36,21 @@ EGraph* kruskal(EGraph *egraph){
 	
 	i=0;
 	edg=0;
-	r=0;
+	
 	while(edg < egraph->v_count -1){
 	
-		curr_edge = &egraph->edges[i];
-		i++;
-		edg++;
+		curr_edge = &egraph->edges[i++];
 		v1 = disj_find(ssets,curr_edge->src_id);
-		v1 = disj_find(ssets,curr_edge->dst_id);
+		v2 = disj_find(ssets,curr_edge->dst_id);
 		if(v1 != v2){
 			disj_union(ssets,v1,v2);
-			res_graph->edges[r++] = *curr_edge; 
-			printf("Found edge!!!!\n");
-		
+			res_graph->edges[edg++] = *curr_edge;		
 		}
 	}
 	
 	
 	
-	return egraph;
+	return res_graph;
 
 
 	

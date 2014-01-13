@@ -36,17 +36,8 @@ int main(int argc, char *argv[])
 	
 	size = getVerticesCount(argv[1]);
 	e_size = getEdgeCount(argv[1]);
-	e_graph = createEGraph(size,e_size);
-	e_graph = fillEGraph(e_graph,argv[1]);
-	//showEGraph(e_graph, e_size);
-	clock_gettime(CLOCK_MONOTONIC, &start);
-	e_graph = kruskal(e_graph);
-	clock_gettime(CLOCK_MONOTONIC, &end);
-	timeElapsed = timespecDiff(&end, &start);
-	showEGraph(e_graph, e_graph->v_count-1);
-	printf ("Kruskal time = %" PRIu64 "\n",timeElapsed);
 	
-	printf("Prim \n");
+	printf("=====================Prim \n");
 	main_graph = createGraph(size);
 	main_graph = fillGraph(main_graph, size, argv[1]);
 	clock_gettime(CLOCK_MONOTONIC, &start);
@@ -55,6 +46,18 @@ int main(int argc, char *argv[])
 	//showGraph(result_graph, size);
 	timeElapsed = timespecDiff(&end, &start);
 	printf ("Prim time = %" PRIu64 "\n",timeElapsed);
+	
+	
+	e_graph = createEGraph(size,e_size);
+	e_graph = fillEGraph(e_graph,argv[1]);
+	//showEGraph(e_graph, e_size);
+	printf ("==================Kruskal\n");
+	clock_gettime(CLOCK_MONOTONIC, &start);
+	e_graph = kruskal(e_graph);
+	clock_gettime(CLOCK_MONOTONIC, &end);
+	timeElapsed = timespecDiff(&end, &start);
+	showEGraph(e_graph, e_graph->v_count-1);
+	printf ("Kruskal time = %" PRIu64 "\n",timeElapsed);
 	
 	/*main_graph = createGraph(size);
 	main_graph = fillGraph(main_graph, size, argv[1]);

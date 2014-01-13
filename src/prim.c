@@ -9,6 +9,7 @@ Graph* prim(Graph *graph, uint16_t size){
 	struct t_MinH* min_heap;
 	struct t_MinHNode* mh_node;	
     int32_t parent[size];   //wynik
+	int32_t weights[size];
     uint16_t key[size];      
 	uint16_t i;
 	uint16_t u,v2;
@@ -48,6 +49,7 @@ Graph* prim(Graph *graph, uint16_t size){
             if ( min_heap->mh_pos[v2] < min_heap->mh_size && adjc_v->weight < key[v2]){
                 key[v2] = adjc_v->weight;
                 parent[v2] = u;
+				weights[v2] = adjc_v->weight;
                 mh_decreaseKey(min_heap, v2, key[v2]);
             }
             adjc_v = adjc_v-> next;
@@ -56,7 +58,7 @@ Graph* prim(Graph *graph, uint16_t size){
 	}
 	
 	for ( i = 1; i < size; ++i)
-        printf("XXX  %d - %d\n", parent[i], i);
+        printf(" (%d %d) %d\n", i, parent[i],weights[i]);
 		
 		
 	
