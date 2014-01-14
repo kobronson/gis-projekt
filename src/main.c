@@ -6,10 +6,10 @@
 #include "kruskal.h"
 #include "time.h"
 
-#include <inttypes.h>
 
 
-int64_t timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p)
+
+int timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p)
 {
   return ((timeA_p->tv_sec ) - (timeB_p->tv_sec ));
 }
@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 {
 	Graph* main_graph, *result_graph;
 	struct t_Set *tmp;
-    uint16_t size,e_size;
+    int size,e_size;
 	EGraph* e_graph;
 	struct timespec start, end;
-	uint64_t timeElapsed;
+	int timeElapsed;
 	
 	
 	if(argc < 2)
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	//showGraph(result_graph, size);
 	timeElapsed = timespecDiff(&end, &start);
-	printf ("Prim time = %" PRIu64 "\n",timeElapsed);
+	printf ("Prim time = %d\n",timeElapsed);
 	
 	
 	e_graph = createEGraph(size,e_size);
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	timeElapsed = timespecDiff(&end, &start);
 	showEGraph(e_graph, e_graph->v_count-1);
-	printf ("Kruskal time = %" PRIu64 "\n",timeElapsed);
+	printf ("Kruskal time = %d\n",timeElapsed);
 	
 	/*main_graph = createGraph(size);
 	main_graph = fillGraph(main_graph, size, argv[1]);

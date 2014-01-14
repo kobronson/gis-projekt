@@ -2,17 +2,18 @@
 #include "set.h"
 #include "debug.h"
 #include <stdio.h>
+#include<limits.h>
 
 
-Graph* prim(Graph *graph, uint16_t size){
+Graph* prim(Graph *graph, int size){
 	
 	struct t_MinH* min_heap;
 	struct t_MinHNode* mh_node;	
-    int32_t parent[size];   //wynik
-	int32_t weights[size];
-    uint16_t key[size];      
-	uint16_t i;
-	uint16_t u,v2;
+    int parent[size];   //wynik
+	int weights[size];
+    int key[size];      
+	int i;
+	int u,v2;
 	struct t_Vertice* adjc_v;
  
 	
@@ -26,7 +27,7 @@ Graph* prim(Graph *graph, uint16_t size){
  	for (i = 1; i < size; ++i){
         
 		parent[i] = -1;		
-        key[i] = UINT16_MAX;
+        key[i] = INT_MAX;
 		min_heap->mh_nodes[i] = mh_newMinHNode(i, key[i]);        
         min_heap->mh_pos[i] = i;
     }

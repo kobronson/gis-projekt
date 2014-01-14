@@ -1,7 +1,7 @@
 #ifndef MIN_HEAP_H_
 #define MIN_HEAP_H_
 
-#include <stdint.h>
+
 #include "graph.h"
 
 
@@ -11,26 +11,26 @@
 
 struct t_MinHNode
 {
-    uint16_t element;
-    uint16_t key;
+    int element;
+    int key;
 };
  
 
 struct t_MinH
 {
-    uint16_t mh_size;     
-    uint16_t mh_len;  
-    uint16_t *mh_pos;     
+    int mh_size;     
+    int mh_len;  
+    int *mh_pos;     
     struct t_MinHNode **mh_nodes;
 };
 
 
-struct t_MinHNode* mh_newMinHNode(uint16_t v, uint16_t key);
-struct t_MinH* mh_createMinH(uint16_t mh_len);
+struct t_MinHNode* mh_newMinHNode(int v, int key);
+struct t_MinH* mh_createMinH(int mh_len);
 void mh_swap(struct t_MinHNode** a, struct t_MinHNode** b);
-void mh_heapify(struct t_MinH* min_heap, uint16_t idx);
+void mh_heapify(struct t_MinH* min_heap, int idx);
 struct t_MinHNode* mh_cutMinHNode(struct t_MinH* min_heap);
-void mh_decreaseKey(struct t_MinH* min_heap, uint16_t v, uint16_t key);
+void mh_decreaseKey(struct t_MinH* min_heap, int v, int key);
 
 
 

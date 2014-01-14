@@ -4,25 +4,25 @@
 #include "set.h"
 
 
-struct t_Set* createSet(uint16_t size)
+struct t_Set* createSet(int size)
 {
 	struct t_Set *new_set;
 	new_set = malloc( sizeof(struct t_Set));
 	new_set->size=0;
-	new_set->set = malloc(size * sizeof(uint16_t));
+	new_set->set = malloc(size * sizeof(int));
 	
 	return new_set;
 }
 
-void addElement(struct t_Set *v_set, uint16_t element)
+void addElement(struct t_Set *v_set, int element)
 {
 	v_set->set[v_set->size] = element;
 	v_set->size++;
 }
 
-uint16_t exists(struct t_Set *v_set, uint16_t element)
+int exists(struct t_Set *v_set, int element)
 {
-	uint16_t i;
+	int i;
 	for(i=0; i < v_set->size; i++)
 	{
 		if(v_set->set[i] == element) 

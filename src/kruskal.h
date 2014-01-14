@@ -1,7 +1,7 @@
 #ifndef KRUSKAL_H_
 #define KRUSKAL_H_
 
-#include <stdint.h>
+
 #include "graph.h"
 
 

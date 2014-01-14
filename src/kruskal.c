@@ -19,7 +19,7 @@ EGraph* kruskal(EGraph *egraph){
 	
 	Graph *trees;
 	struct disj_set *ssets;
-	uint16_t i,edg,v1,v2;
+	int i,edg,v1,v2;
 	struct t_Edge *curr_edge;
 	EGraph *res_graph = createEGraph(egraph->v_count, egraph->v_count - 1);
 	

@@ -1,18 +1,18 @@
 #ifndef SET_H_
 #define SET_H_
 
-#include <stdint.h>
+
 
 struct t_Set{
-	uint16_t* set;
-	uint16_t size;
+	int* set;
+	int size;
 };
 
-struct t_Set* createSet(uint16_t size);
+struct t_Set* createSet(int size);
 
-void addElement(struct t_Set *set, uint16_t element);
+void addElement(struct t_Set *set, int element);
 
-uint16_t exists(struct t_Set *v_set, uint16_t element);
+int exists(struct t_Set *v_set, int element);
 
 
 

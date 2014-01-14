@@ -5,7 +5,7 @@
 
 
 
-struct t_MinHNode* mh_newMinHNode(uint16_t v, uint16_t key){
+struct t_MinHNode* mh_newMinHNode(int v, int key){
     struct t_MinHNode* tmp;
 	tmp = malloc(sizeof(struct t_MinHNode));
     tmp->element = v;
@@ -14,10 +14,10 @@ struct t_MinHNode* mh_newMinHNode(uint16_t v, uint16_t key){
 }
  
 
-struct t_MinH* mh_createMinH(uint16_t mh_len){
+struct t_MinH* mh_createMinH(int mh_len){
     struct t_MinH* min_heap;
     min_heap = malloc(sizeof(struct t_MinH));
-    min_heap->mh_pos = malloc(mh_len * sizeof(uint16_t));
+    min_heap->mh_pos = malloc(mh_len * sizeof(int));
     min_heap->mh_size = 0;
     min_heap->mh_len = mh_len;
     min_heap->mh_nodes = malloc(mh_len * sizeof(struct t_MinHNode*));
@@ -31,11 +31,11 @@ void mh_swap(struct t_MinHNode** a, struct t_MinHNode** b){
     *b = tmp;
 }
 
-void mh_heapify(struct t_MinH* min_heap, uint16_t idx){
+void mh_heapify(struct t_MinH* min_heap, int idx){
     
 	struct t_MinHNode *minNode;
 	struct t_MinHNode *idxNode;
-	uint16_t min, l,r;
+	int min, l,r;
 	
 	
     min = idx;
@@ -90,10 +90,10 @@ struct t_MinHNode* mh_cutMinHNode(struct t_MinH* min_heap){
 
 
 
-void mh_decreaseKey(struct t_MinH* min_heap, uint16_t v, uint16_t key)
+void mh_decreaseKey(struct t_MinH* min_heap, int v, int key)
 {
 
-    uint16_t it; 
+    int it; 
 	
 	
 	it = min_heap->mh_pos[v];

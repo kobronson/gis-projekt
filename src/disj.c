@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include"disj.h"
 
-uint16_t disj_find(struct disj_set* ssets, uint16_t vertice)
+int disj_find(struct disj_set* ssets, int vertice)
 {
     //find root of the tree
     if (ssets[vertice].parent != vertice)
@@ -11,10 +11,10 @@ uint16_t disj_find(struct disj_set* ssets, uint16_t vertice)
     return ssets[vertice].parent;	
 }
 
-void disj_union(struct disj_set* ssets, uint16_t v1, uint16_t v2)
+void disj_union(struct disj_set* ssets, int v1, int v2)
 {
-    uint16_t v1_root;
-    uint16_t v2_root; 
+    int v1_root;
+    int v2_root; 
 	v1_root	= disj_find(ssets, v1);
 	v2_root = disj_find(ssets, v2);
     // Attach smaller rank tree under root of high rank tree
