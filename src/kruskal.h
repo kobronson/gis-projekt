@@ -6,7 +6,7 @@
 
 
 
-/*Disjoint data set - warunek nie moze byc cykli w grafie*/
+
 
 
 EGraph* kruskal(EGraph *graph);

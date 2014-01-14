@@ -28,15 +28,15 @@ struct tEdgeGraph{
 
 	struct t_Edge* edges;
 	int v_count;
-	int e_count;
+	long int e_count;
 };
 
 typedef struct tEdgeGraph EGraph;
 
 int getEdgeCount(char *filename);
-EGraph* createEGraph(int v_size,int e_size);
+EGraph* createEGraph(int v_size,long int e_size);
 EGraph* fillEGraph(EGraph* g, char *filename);
-void showEGraph(EGraph* eg, int size);
+void showEGraph(EGraph* eg, long int size);
 
 
 

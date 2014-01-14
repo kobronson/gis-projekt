@@ -5,13 +5,18 @@
 #include "prim.h"
 #include "kruskal.h"
 #include "time.h"
+#include <inttypes.h>
 
 
 
 
-int timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p)
+#include <stdint.h>
+#include <time.h>
+
+int64_t timespecDiff(struct timespec *timeA_p, struct timespec *timeB_p)
 {
-  return ((timeA_p->tv_sec ) - (timeB_p->tv_sec ));
+  return ((timeA_p->tv_sec * 1000000000) + timeA_p->tv_nsec) -
+           ((timeB_p->tv_sec * 1000000000) + timeB_p->tv_nsec);
 }
 
 int main(int argc, char *argv[])
@@ -21,7 +26,7 @@ int main(int argc, char *argv[])
     int size,e_size;
 	EGraph* e_graph;
 	struct timespec start, end;
-	int timeElapsed;
+	uint64_t timeElapsed;
 	
 	
 	if(argc < 2)
@@ -45,7 +50,7 @@ int main(int argc, char *argv[])
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	//showGraph(result_graph, size);
 	timeElapsed = timespecDiff(&end, &start);
-	printf ("Prim time = %d\n",timeElapsed);
+	printf ("Prim time = %" PRIu64 "\n",timeElapsed/1000000);
 	
 	
 	e_graph = createEGraph(size,e_size);
@@ -57,7 +62,7 @@ int main(int argc, char *argv[])
 	clock_gettime(CLOCK_MONOTONIC, &end);
 	timeElapsed = timespecDiff(&end, &start);
 	showEGraph(e_graph, e_graph->v_count-1);
-	printf ("Kruskal time = %d\n",timeElapsed);
+	printf ("Kruskal time = %" PRIu64 "\n",timeElapsed/1000000);
 	
 	/*main_graph = createGraph(size);
 	main_graph = fillGraph(main_graph, size, argv[1]);
@@ -67,13 +72,13 @@ int main(int argc, char *argv[])
 	printf("\n========================================\n");
 	showGraph(result_graph, size);
 	
-	printf("Contains eges %d",getEdgeCount(argv[1]));*/
+	printf("Contains eges %lu",getEdgeCount(argv[1]));*/
 	
 	
 	/*tmp = createSet(10);
 	addElement(tmp,1);
 	addElement(tmp,2);
-	printf("%d %d %d\n", tmp->set[0], tmp->set[1], tmp->size);
+	printf("%lu %lu %lu\n", tmp->set[0], tmp->set[1], tmp->size);
 	prim(main_graph,size);*/
 	
 	

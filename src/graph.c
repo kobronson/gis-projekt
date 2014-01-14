@@ -115,7 +115,7 @@ int getEdgeCount(char *filename){
 
 	FILE *fp;
 	int src_id = 0, dst_id = 0, weight;
-	int e_count = 0;
+	long int e_count = 0;
 	
 	
 	fp = fopen(filename, "r");
@@ -124,7 +124,7 @@ int getEdgeCount(char *filename){
 		e_count++;		
 	}
 	fclose(fp);
-	printf("Graph contains %d edges\n", e_count);
+	printf("Graph contains %ld edges\n", e_count);
 	
 	
 	return e_count;
@@ -134,7 +134,7 @@ int getEdgeCount(char *filename){
 
 
 
-EGraph* createEGraph(int v_size,int e_size){
+EGraph* createEGraph(int v_size,long int e_size){
 
 	EGraph* egraph;
 	egraph = malloc(sizeof(EGraph));
@@ -148,7 +148,8 @@ EGraph* createEGraph(int v_size,int e_size){
 EGraph* fillEGraph(EGraph* egraph, char *filename){
 
 	FILE *fp;	
-	int src_id, dst_id, weight, i = 0 ;
+	int src_id, dst_id, weight; 
+	long int i = 0;
 	struct t_Edge *tmp; 
 	
 	
@@ -171,7 +172,7 @@ EGraph* fillEGraph(EGraph* egraph, char *filename){
 	
 }
 
-void showEGraph(EGraph* eg, int size){
+void showEGraph(EGraph* eg, long int size){
 	int i;
 	struct t_Edge* tmp;
 	for(i=0;i<size;i++){

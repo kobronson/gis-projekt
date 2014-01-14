@@ -3,7 +3,7 @@
 
 #include<stdio.h>
 
-#define DBG_LINE printf("%s:%d\n",__PRETTY_FUNCTION__,__LINE__);
+#define DBG_LINE printf("%s:%lu\n",__PRETTY_FUNCTION__,__LINE__);
 #define DBG(...) printf( __VA_ARGS__)
 
 

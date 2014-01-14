@@ -19,7 +19,8 @@ EGraph* kruskal(EGraph *egraph){
 	
 	Graph *trees;
 	struct disj_set *ssets;
-	int i,edg,v1,v2;
+	long int i,edg;
+	int v1,v2;
 	struct t_Edge *curr_edge;
 	EGraph *res_graph = createEGraph(egraph->v_count, egraph->v_count - 1);
 	
@@ -83,6 +84,6 @@ EGraph* kruskal(EGraph *egraph){
     // print the contents of result[] to display the built MST
     printf("Following are the edges in the constructed MST\n");
     for (i = 0; i < e; ++i)
-        printf("%d -- %d == %d\n", result[i].src, result[i].dest,
+        printf("%lu -- %lu == %lu\n", result[i].src, result[i].dest,
                                                    result[i].weight);
     return; */
