@@ -25,10 +25,12 @@ int getVerticesCount(char *filename){
 	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
 	{
 		if(src_id > v_count) v_count = src_id;
-		if(dst_id > v_count) v_count = dst_id;			
+		if(dst_id > v_count) v_count = dst_id;		
 	}
 	fclose(fp);
+#ifdef DEBUG
 	printf("Graph contains %d vertices\n", v_count+1);
+#endif
 	
 	
 	return v_count+1;
@@ -124,7 +126,9 @@ int getEdgeCount(char *filename){
 		e_count++;		
 	}
 	fclose(fp);
+#ifdef DEBUG
 	printf("Graph contains %ld edges\n", e_count);
+#endif
 	
 	
 	return e_count;

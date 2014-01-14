@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 	uint64_t timeElapsed;
 	
 	
-	if(argc < 2)
+	if(argc < 3)
 	{
 		return 0;
 	}
@@ -38,48 +38,36 @@ int main(int argc, char *argv[])
 
 	
 	
-	
+	printf ("Processing graph %s\n",argv[1]);
 	size = getVerticesCount(argv[1]);
 	e_size = getEdgeCount(argv[1]);
 	
-	printf("=====================Prim \n");
-	main_graph = createGraph(size);
-	main_graph = fillGraph(main_graph, size, argv[1]);
-	clock_gettime(CLOCK_MONOTONIC, &start);
-	result_graph = prim(main_graph,size);
-	clock_gettime(CLOCK_MONOTONIC, &end);
-	//showGraph(result_graph, size);
-	timeElapsed = timespecDiff(&end, &start);
-	printf ("Prim time = %" PRIu64 "\n",timeElapsed/1000000);
+	if(*argv[2] == 'p'){
+		main_graph = createGraph(size);
+		main_graph = fillGraph(main_graph, size, argv[1]);
 	
+		clock_gettime(CLOCK_MONOTONIC, &start);
+		result_graph = prim(main_graph,size);
+		clock_gettime(CLOCK_MONOTONIC, &end);
 	
-	e_graph = createEGraph(size,e_size);
-	e_graph = fillEGraph(e_graph,argv[1]);
-	//showEGraph(e_graph, e_size);
-	printf ("==================Kruskal\n");
-	clock_gettime(CLOCK_MONOTONIC, &start);
-	e_graph = kruskal(e_graph);
-	clock_gettime(CLOCK_MONOTONIC, &end);
-	timeElapsed = timespecDiff(&end, &start);
-	showEGraph(e_graph, e_graph->v_count-1);
-	printf ("Kruskal time = %" PRIu64 "\n",timeElapsed/1000000);
+		timeElapsed = timespecDiff(&end, &start);
+		printf ("MST Prim runtime = %" PRIu64 "ms\n",timeElapsed/1000000);
+	}
 	
-	/*main_graph = createGraph(size);
-	main_graph = fillGraph(main_graph, size, argv[1]);
-	showGraph(main_graph, size);
+	if(*argv[2] == 'k'){
+		e_graph = createEGraph(size,e_size);
+		e_graph = fillEGraph(e_graph,argv[1]);
+		
+		clock_gettime(CLOCK_MONOTONIC, &start);
+		e_graph = kruskal(e_graph);
+		clock_gettime(CLOCK_MONOTONIC, &end);
 	
-	result_graph = prim(main_graph, size);
-	printf("\n========================================\n");
-	showGraph(result_graph, size);
-	
-	printf("Contains eges %lu",getEdgeCount(argv[1]));*/
-	
-	
-	/*tmp = createSet(10);
-	addElement(tmp,1);
-	addElement(tmp,2);
-	printf("%lu %lu %lu\n", tmp->set[0], tmp->set[1], tmp->size);
-	prim(main_graph,size);*/
+		timeElapsed = timespecDiff(&end, &start);
+#ifdef DEBUG
+		showEGraph(e_graph, e_graph->v_count-1);
+#endif
+		printf ("MST Kruskal runtime = %" PRIu64 "ms\n",timeElapsed/1000000);
+	}
 	
 	
 	return 0;
