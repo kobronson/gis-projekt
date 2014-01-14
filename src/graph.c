@@ -28,7 +28,9 @@ uint16_t getVerticesCount(char *filename){
 		if(dst_id > v_count) v_count = dst_id;			
 	}
 	fclose(fp);
+#ifdef DEBUG
 	printf("Graph contains %d vertices\n", v_count+1);
+#endif
 	
 	
 	return v_count+1;
@@ -124,8 +126,10 @@ uint16_t getEdgeCount(char *filename){
 		e_count++;		
 	}
 	fclose(fp);
-	printf("Graph contains %d edges\n", e_count);
 	
+
+	printf("Graph contains %d edges\n", e_count);
+
 	
 	return e_count;
 
@@ -147,20 +151,23 @@ EGraph* createEGraph(uint16_t v_size,uint16_t e_size){
 }
 EGraph* fillEGraph(EGraph* egraph, char *filename){
 
-	FILE *fp;	
-	uint16_t src_id, dst_id, weight, i = 0 ;
+	FILE *fp;
+	int i = 0 ;	
+	uint16_t src_id, dst_id, weight;
+	
 	struct t_Edge *tmp; 
 	
 	
 	fp = fopen(filename, "r");
-	while ( fscanf(fp, "%" SCNu16 "%" SCNu16 "%" SCNu16 "\n", &src_id, &dst_id, &weight) != EOF)
+	while ( fscanf(fp, "%d %d %d\n", &src_id, &dst_id, &weight) != EOF)
 	{		
-		tmp = &egraph->edges[i];
+		tmp = &egraph->edges[++i];
 		tmp->src_id = src_id;
 		tmp->dst_id = dst_id;
 		tmp->weight = weight;
 		
-		i++;
+		
+		printf(" iter %d === %d %d %d\n",i,src_id,dst_id, weight);
 	}
 	
 	
@@ -175,11 +182,10 @@ void showEGraph(EGraph* eg, uint16_t size){
 	uint16_t i;
 	struct t_Edge* tmp;
 	for(i=0;i<size;i++){
-	
 		
 		tmp = &eg->edges[i];
 		printf(" (%d %d)-%d",tmp->src_id,tmp->dst_id, tmp->weight);
-			
+	
 		printf("\n");		
 	}
 }

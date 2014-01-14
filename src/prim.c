@@ -57,10 +57,11 @@ Graph* prim(Graph *graph, uint16_t size){
         }
 		
 	}
-	
+#ifdef DEBUG
 	for ( i = 1; i < size; ++i)
         printf(" (%d %d)-%d\n", i, parent[i],key[i]);
+#endif
 		
-		
+	return NULL;	
 	
 }

@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
 	struct t_Set *tmp;
     uint16_t size,e_size;
 	EGraph* e_graph;
-	struct timespec start, end;
-	uint64_t timeElapsed;
+	clock_t start, end;
+	double timeElapsed;
 	
 	
 	if(argc < 2)
@@ -32,49 +32,49 @@ int main(int argc, char *argv[])
 	
 
 	
-	
-	
+/******************Prim*************************/	
+	/*if(*argv[2] == 'p'){
 	size = getVerticesCount(argv[1]);
 	e_size = getEdgeCount(argv[1]);
 	
-	printf("=====================Prim \n");
+	printf("MST: Algorytm Prima dla grafu testowego %s\n",argv[1]);
 	main_graph = createGraph(size);
+	
 	main_graph = fillGraph(main_graph, size, argv[1]);
-	clock_gettime(CLOCK_MONOTONIC, &start);
+		
+	start = clock();
+	
 	result_graph = prim(main_graph,size);
-	clock_gettime(CLOCK_MONOTONIC, &end);
-	//showGraph(result_graph, size);
-	timeElapsed = timespecDiff(&end, &start);
-	printf ("Prim time = %" PRIu64 "\n",timeElapsed);
 	
-	
-	e_graph = createEGraph(size,e_size);
-	e_graph = fillEGraph(e_graph,argv[1]);
-	//showEGraph(e_graph, e_size);
-	printf ("==================Kruskal\n");
-	clock_gettime(CLOCK_MONOTONIC, &start);
-	e_graph = kruskal(e_graph);
-	clock_gettime(CLOCK_MONOTONIC, &end);
-	timeElapsed = timespecDiff(&end, &start);
-	showEGraph(e_graph, e_graph->v_count-1);
-	printf ("Kruskal time = %" PRIu64 "\n",timeElapsed);
-	
-	/*main_graph = createGraph(size);
-	main_graph = fillGraph(main_graph, size, argv[1]);
-	showGraph(main_graph, size);
-	
-	result_graph = prim(main_graph, size);
-	printf("\n========================================\n");
+	end = clock();
+	timeElapsed = (double)(end - start) / CLOCKS_PER_SEC;
+	printf ("Prim czas = %lf \n",timeElapsed);
+	}*/
+#ifdef DEBUG
 	showGraph(result_graph, size);
+#endif	
+
+
+/***************Kruskal************************/
+
+
+	printf ("MST algorytm Kruskala dla grafu testowego %s\n",argv[1]);
+	e_size = getEdgeCount(argv[1]);
+	e_graph = createEGraph(size,e_size);
+	e_graph = fillEGraph(e_graph,argv[1]);	
+	start = clock();
 	
-	printf("Contains eges %d",getEdgeCount(argv[1]));*/
+	e_graph = kruskal(e_graph);
 	
+	end = clock();
+	timeElapsed = (double)(end - start) / CLOCKS_PER_SEC;
+	printf ("Kruskal czas = %lf \n",timeElapsed);
+#ifdef DEBUG
+	showEGraph(e_graph, e_graph->v_count-1);
+#endif
 	
-	/*tmp = createSet(10);
-	addElement(tmp,1);
-	addElement(tmp,2);
-	printf("%d %d %d\n", tmp->set[0], tmp->set[1], tmp->size);
-	prim(main_graph,size);*/
+		
+	
 	
 	
 	return 0;
