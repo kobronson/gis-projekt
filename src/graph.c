@@ -1,10 +1,3 @@
-/*
- * node.cpp
- *
- *  Created on: 12-2013
- *      Author: Filip Nabrdalik
- */
-
 #include "graph.h"
 #include "debug.h"
 #include <stdlib.h>
@@ -14,7 +7,7 @@
 
 
 
-
+/*Zwroc liczbe wiercholkow*/
 int getVerticesCount(char *filename){
 	FILE *fp;
 	int src_id = 0, dst_id = 0, weight;
@@ -36,7 +29,7 @@ int getVerticesCount(char *filename){
 	return v_count+1;
 	
 }
-
+/*Tworzenie grafu*/
 Graph* createGraph(int size){
 	Graph  *g;	
 	int src_id, dst_id, weight,i;
@@ -53,7 +46,7 @@ Graph* createGraph(int size){
 	
 	return g;
 }
-
+/*Wczytywanie grafu z pliku*/
 Graph* fillGraph(Graph* g, int size, char *filename){
 
 	FILE *fp;
@@ -73,6 +66,7 @@ Graph* fillGraph(Graph* g, int size, char *filename){
 	return g;
 }
 
+/*Dodawanie wierzcholka*/
 void addVertice(Graph *g,int dst, int wght){
 	struct t_Vertice* tmp;
 	
@@ -113,6 +107,7 @@ void showGraph(Graph* g, int size){
 }
 
 
+/*Zwroc ilosc krawedzi*/
 int getEdgeCount(char *filename){
 
 	FILE *fp;
@@ -137,7 +132,7 @@ int getEdgeCount(char *filename){
 
 
 
-
+/*Tworzenie grafu- reprezentacja krawedziowa*/
 EGraph* createEGraph(int v_size,long int e_size){
 
 	EGraph* egraph;
@@ -149,6 +144,8 @@ EGraph* createEGraph(int v_size,long int e_size){
 	return egraph;	
 
 }
+
+/*Wczytywanie grafu z pliku- reprezentacja krawedziowa*/
 EGraph* fillEGraph(EGraph* egraph, char *filename){
 
 	FILE *fp;	

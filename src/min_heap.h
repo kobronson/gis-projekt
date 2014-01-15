@@ -5,7 +5,7 @@
 #include "graph.h"
 
 
-
+/*Kopiec binarny definicje i operacje*/
 
 
 

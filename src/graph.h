@@ -4,11 +4,13 @@
 
 #include <stdio.h>
 
+/*Reprezentacja w postaci listy sąsiedztwa*/
 struct t_Vertice{
-	int dst_id; //vertice on the other side of the edge
-    int  weight; //weight of the edge	
+	int dst_id;
+    int  weight; 
 	struct t_Vertice *next;
 };
+
 
 typedef struct t_Vertice* Graph;
 
@@ -23,6 +25,9 @@ struct t_Edge{
 	int dst_id;
 	int  weight;
 };
+
+/*Reprezentacja krawedziowa*/
+
 
 struct tEdgeGraph{
 

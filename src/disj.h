@@ -6,7 +6,7 @@
 
 
 
-/*Disjoint data set - warunek nie moze byc cykli w grafie*/
+/*Disjoint data set - struktura zbiorow rozlacznych*/
 
 struct disj_set{
 	int parent;

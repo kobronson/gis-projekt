@@ -6,8 +6,11 @@
 #include "min_heap.h"
 
 
-
-Graph* prim(Graph *graph, int size);
+/*Algorytm Prima 
+graph - graf w postaci listy sąsiedztwa
+size - ilość wierchołków w grafie
+*/
+void prim(Graph *graph, int size);
 
 
 #endif /* PRIM_H_ */
