@@ -1,0 +1,230 @@
+
+\documentclass[a4paper, 10pt]{article}
+
+\usepackage{graphicx}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[OT4]{fontenc}
+\usepackage{geometry}
+\usepackage{ulem}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[section]{placeins}
+\usepackage{amsmath}
+
+\RequirePackage{url}
+
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{3mm plus1mm minus1mm}
+
+\geometry{verbose,a4paper,tmargin=2.3cm,bmargin=2.3cm,lmargin=2.4cm,rmargin=2.4cm}
+\usepackage{graphicx} % wstawianie obrazkow
+
+
+%%%%%%%%%%%%%%%%%%%%%%Do Pseudokodu%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\algorithmicrequire}{\textbf{Dane wejściowe:}}
+\renewcommand{\algorithmicensure}{\textbf{Inicjalizacja:}}
+\renewcommand{\algorithmicend}{\textbf{end}}
+\renewcommand{\algorithmicif}{\textbf{if}}
+\renewcommand{\algorithmicthen}{\textbf{then}}
+\renewcommand{\algorithmicelse}{\textbf{else}}
+\renewcommand{\algorithmicelsif}{\algorithmicelse\ \algorithmicif}
+\renewcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
+\renewcommand{\algorithmicfor}{\textbf{for}}
+\renewcommand{\algorithmicforall}{\textbf{for all}}
+\renewcommand{\algorithmicdo}{\textbf{do}}
+\renewcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
+\renewcommand{\algorithmicwhile}{\textbf{while}}
+\renewcommand{\algorithmicendwhile}{\algorithmicend\ \algorithmicwhile}
+\renewcommand{\algorithmicloop}{\textbf{loop}}
+\renewcommand{\algorithmicendloop}{\algorithmicend\ \algorithmicloop}
+\renewcommand{\algorithmicrepeat}{\textbf{repeat}}
+\renewcommand{\algorithmicuntil}{\textbf{until}}
+\renewcommand{\algorithmicprint}{\textbf{print}}
+\renewcommand{\algorithmicreturn}{\textbf{Wyjście:}}
+\renewcommand{\algorithmictrue}{\textbf{true}}
+\renewcommand{\algorithmicfalse}{\textbf{false}}
+
+    
+\floatname{algorithm}{}
+\renewcommand\thealgorithm{}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{{\bf {Grafy i sieci}} \\ {\large Sprawozdanie końcowe}}
+\date{\today}
+\author{Filip Nabrdalik}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\bibliographystyle{plain}
+
+
+%%%%%%%
+
+\maketitle 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\ang}[1]{(ang. {\em #1}\/)}
+\newcommand{\e}[1]{{\em #1}\/}
+
+
+
+
+
+\section{Treść zadania}
+
+{\bf{Zadanie}}
+
+Porównanie algorytmów znajdowania minimalnego drzewa rozpinającego.
+
+Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania minimalnego drzewa rozpinającego w grafie nieskierowanym. 
+
+ 
+
+\section{Uwagi do sprawozdania}
+
+Niestety w wyniku zniejszenia zespołu projektowego o połowę nie udało sie zrealizować i ocenić algorytmu Borůvki. 
+Na ostatnim etapie projektu zmieniły się również decyzje projektowe dotyczące użytych struktur danych, więc 
+dokumentacja ta stanowi zarazem ostateczne sprawozdanie oraz doprecyzowanie poprzedniego dokumentu projektowego.
+
+
+
+\section{Struktury danych}
+
+%struktura zbiorow rozlacznych
+%path compression 
+%kopiec binarny
+%bfs
+
+\section{Opis programu}
+
+\section{Testy}
+\subsection{Testy poprawności}
+\subsection{Testy wydajnościowe}
+
+\subsection{Zużycie pamięci}
+
+\section{Wyniki}
+
+\subsection{Czas wykonania}
+
+\begin{center}
+    \begin{tabular}{| l | l | c | c |}
+    \hline
+    V & p & Prim [ms] & Kruskal [ms] \\ \hline
+	500 & 0.1 & 2 & 14  \\ 
+	500 & 0.3 & 7& 23  \\ 
+	500 & 0.5 & 14& 41  \\ 
+	500 & 0.7 & 20& 53  \\ 
+	500 & 0.9 & 30& 70  \\ \hline
+	1000 & 0.1 & 17& 49  \\ 
+	1000 & 0.3 & 49& 132  \\ 
+	1000 & 0.5 & 62& 155 \\ 
+	1000 & 0.7 & 75& 159 \\ 
+	1000 & 0.9 & 120& 220  \\ \hline
+	2000 & 0.1 & 39& 94  \\ 
+	2000 & 0.3 & 116& 239  \\ 
+	2000 & 0.5 & 183& 380  \\ 
+	2000 & 0.7 & 259& 540  \\ 
+	2000 & 0.9 & 329& 730  \\ \hline
+	3000 & 0.1 & 82& 161\\ 
+	3000 & 0.3 & 256& 521  \\ 
+	3000 & 0.5 & 439& 895  \\ 
+	3000 & 0.7 & 611& 2615  \\ \hline
+    \end{tabular}
+\end{center}
+
+%500 wezlow
+% k=[14 24 41 53 70]
+% p=[2 7 14 20 30]
+% s='MST: |V|=500'
+
+%1000 wezlow
+% k=[49 132 155 159 220]
+% p=[17 49 62 75 120]
+% s='MST: |V|=1000'
+
+%2000 wezlow
+% k=[94 239 380 540 730]
+% p=[39 116 183 259 329]
+% s='MST: |V|=2000'
+
+%3000 wezlow
+k=[161 521 895 2615]
+p=[82 256 439 611]
+s='MST: |V|=3000'
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=165mm]{wykresy/v500.eps}
+\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 500 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\label{overflow}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=165mm]{wykresy/v1000.eps}
+\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 1000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\label{overflow}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=165mm]{wykresy/v2000.eps}
+\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 2000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\label{overflow}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=165mm]{wykresy/v3000.eps}
+\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 3000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\label{overflow}
+\end{figure}
+\FloatBarrier
+
+\subsection{Pamięć}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=165mm]{wykresy/mem.eps}
+\caption{\it{Zużycie pamięci przez algorytmy dla grafu zawierającego 2000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\label{overflow}
+\end{figure}
+\FloatBarrier
+\section{Wnioski}
+
+
+
+
+
+
+	
+
+
+
+
+
+%BIBLIOGRAFIA
+\nocite{*}
+\renewcommand\refname{\section{Bibliografia}}
+\bibliography{bibliografia}
+
+
+\end{document}
+
+

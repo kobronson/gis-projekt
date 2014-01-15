@@ -3,7 +3,7 @@ import networkx as nx
 import random;
 import os
 G=nx.Graph()
-v_gen = [100, 200, 500]
+v_gen = [500,1000,2000,3000]
 p_gen =  [0.1,0.3,0.5,0.7,0.9]
 
 
