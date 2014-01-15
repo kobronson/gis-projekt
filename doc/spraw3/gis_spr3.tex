@@ -77,10 +77,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\newcommand{\ang}[1]{(ang. {\em #1}\/)}
+\newcommand{\ang}[1]{(ang.  #1\/)}
 \newcommand{\e}[1]{{\em #1}\/}
 
-
+\renewcommand*{\figurename}{Wykres}
 
 
 
@@ -90,11 +90,11 @@
 
 Porównanie algorytmów znajdowania minimalnego drzewa rozpinającego.
 
-Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania minimalnego drzewa rozpinającego w grafie nieskierowanym. 
+{\it Wybrać, zaimplementować i przebadać co najmniej dwa algorytmy znajdowania minimalnego drzewa rozpinającego w grafie nieskierowanym. }
 
  
 
-\section{Uwagi do sprawozdania}
+\section{Uwagi wstępne}
 
 Niestety w wyniku zniejszenia zespołu projektowego o połowę nie udało sie zrealizować i ocenić algorytmu Borůvki. 
 Na ostatnim etapie projektu zmieniły się również decyzje projektowe dotyczące użytych struktur danych, więc 
@@ -102,14 +102,52 @@ dokumentacja ta stanowi zarazem ostateczne sprawozdanie oraz doprecyzowanie popr
 
 
 
-\section{Struktury danych}
+\section{Struktury danych i złożoność obliczeniowa}
+
+Podczas prac projektowych okazało się, że użycie tylko jednej reprezentacji grafu jest niewystarczające. Do realizacji algorytmów należało użyć
+list sąsiedztwa wierchołków oraz reprezentacji krawędziowej grafu. Dodatkowo należało też zmienić struktury danych używane do realizacji algorytmu Kruskala
+i Prima.
+
+
+{\bf{Algorytm Prima}}
+ 
+ Do realizacji algorytmu zostały użyte listy sąsiedztwa wierzchołków.
+ W celu zmniejszenia złożoności obliczeniowej struktura zbioru wierchołków Set $O(V^2)$ została zastąpiona
+ przez kopiec binarny i przeszukiwanie wszerz BFS \ang{Breadth-first search}CITE. Przeszukiwanie wszerz jest wykorzystywane do
+ poruszania sie po wierzchołkach $O(V+E)$, a kopiec binarny przechowuje wierchołki, które nie znajdują się w MST. Kopiec binarny używany 
+ jest tu jako kolejka priorytetowa, aby szybko uzyskać krawędź o najmniejszej wadze $O(LogV)$. Złożoność obliczeniowa algorytmu powinna wynosić
+ $O(ElogV)$.
+ 
+
+
+{\bf{Algorytm Kruskala}}
+
+Do realizacji algorytmu została wykorzystana reprezentacja krawędziowa grafu oraz struktura zbiorów rozłącznych. 
+Dodatkową techniką używana w algorytmie jest scalenie poprzez rangę \ang{union by rank}, która pozwala na dołączenie mniejszego drzewa 
+do korzenia większego $O(logV)$ CITE oraz kompresja ścieżki \ang{path compression} polegająca na "spłaszczeniu" drzewa podczas przeszukiwania  poprzez dołączanie 
+odwiedzonych wierzchołków bezpośrednio do korzenia.łożoność obliczeniowa algorytmu powinna wynosić $O(ElogE)$.
+
 
 %struktura zbiorow rozlacznych
-%path compression 
-%kopiec binarny
-%bfs
+%path compression
 
 \section{Opis programu}
+
+{\bf{Format danych wejściowych}}
+
+Grafy sa reprezentowane w postaci krawędziowej w pliku tekstowym, której
+każdy wiersz stanowi odrębną krawędź. Pierwsza i druga kolumna to numery wierzchołkow pomiędzy którymi istnieje krawędź.
+Kolumna trzecia zawiera wagę wierchołka w postaci całkowitoliczbowej.
+
+{\bf{Program mst}}
+
+W celu uruchomienia algorytmów należy użyć polecenia: \\
+{\it mst nazwa\_pliku\_grafu.txt k lub p}, \\
+gdzie p oznacza użycie algorytmu Prima, a k Kruskala.
+
+
+
+
 
 \section{Testy}
 \subsection{Testy poprawności}
@@ -147,25 +185,6 @@ dokumentacja ta stanowi zarazem ostateczne sprawozdanie oraz doprecyzowanie popr
     \end{tabular}
 \end{center}
 
-%500 wezlow
-% k=[14 24 41 53 70]
-% p=[2 7 14 20 30]
-% s='MST: |V|=500'
-
-%1000 wezlow
-% k=[49 132 155 159 220]
-% p=[17 49 62 75 120]
-% s='MST: |V|=1000'
-
-%2000 wezlow
-% k=[94 239 380 540 730]
-% p=[39 116 183 259 329]
-% s='MST: |V|=2000'
-
-%3000 wezlow
-k=[161 521 895 2615]
-p=[82 256 439 611]
-s='MST: |V|=3000'
 
 
 \begin{figure}[ht!]
@@ -195,7 +214,7 @@ s='MST: |V|=3000'
 \caption{\it{Czas wykonania algorytmów dla grafu zawierającego 3000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
 \label{overflow}
 \end{figure}
-\FloatBarrier
+
 
 \subsection{Pamięć}
 
