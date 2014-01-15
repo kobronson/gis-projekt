@@ -96,7 +96,7 @@ Porównanie algorytmów znajdowania minimalnego drzewa rozpinającego.
 
 \section{Uwagi wstępne}
 
-Niestety w wyniku zniejszenia zespołu projektowego o połowę nie udało sie zrealizować i ocenić algorytmu Borůvki. 
+Niestety w wyniku zmniejszenia zespołu projektowego o połowę nie udało się zrealizować i ocenić algorytmu Borůvki. 
 Na ostatnim etapie projektu zmieniły się również decyzje projektowe dotyczące użytych struktur danych, więc 
 dokumentacja ta stanowi zarazem ostateczne sprawozdanie oraz doprecyzowanie poprzedniego dokumentu projektowego.
 
@@ -105,7 +105,7 @@ dokumentacja ta stanowi zarazem ostateczne sprawozdanie oraz doprecyzowanie popr
 \section{Struktury danych i złożoność obliczeniowa}
 
 Podczas prac projektowych okazało się, że użycie tylko jednej reprezentacji grafu jest niewystarczające. Do realizacji algorytmów należało użyć
-list sąsiedztwa wierchołków oraz reprezentacji krawędziowej grafu. Dodatkowo należało też zmienić struktury danych używane do realizacji algorytmu Kruskala
+list sąsiedztwa wierzchołków oraz reprezentacji krawędziowej grafu. Dodatkowo należało też zmienić struktury danych używane do realizacji algorytmu Kruskala
 i Prima.
 
 
@@ -113,7 +113,7 @@ i Prima.
  
  Do realizacji algorytmu zostały użyte listy sąsiedztwa wierzchołków.
  W celu zmniejszenia złożoności obliczeniowej struktura zbioru wierchołków Set $O(V^2)$ została zastąpiona
- przez kopiec binarny i przeszukiwanie wszerz BFS \ang{Breadth-first search}CITE. Przeszukiwanie wszerz jest wykorzystywane do
+ przez kopiec binarny\cite{kopiec} i przeszukiwanie wszerz BFS \ang{Breadth-first search}\cite{bfs}. Przeszukiwanie wszerz jest wykorzystywane do
  poruszania sie po wierzchołkach $O(V+E)$, a kopiec binarny przechowuje wierchołki, które nie znajdują się w MST. Kopiec binarny używany 
  jest tu jako kolejka priorytetowa, aby szybko uzyskać krawędź o najmniejszej wadze $O(LogV)$. Złożoność obliczeniowa algorytmu powinna wynosić
  $O(ElogV)$.
@@ -123,9 +123,9 @@ i Prima.
 {\bf{Algorytm Kruskala}}
 
 Do realizacji algorytmu została wykorzystana reprezentacja krawędziowa grafu oraz struktura zbiorów rozłącznych. 
-Dodatkową techniką używana w algorytmie jest scalenie poprzez rangę \ang{union by rank}, która pozwala na dołączenie mniejszego drzewa 
-do korzenia większego $O(logV)$ CITE oraz kompresja ścieżki \ang{path compression} polegająca na "spłaszczeniu" drzewa podczas przeszukiwania  poprzez dołączanie 
-odwiedzonych wierzchołków bezpośrednio do korzenia.łożoność obliczeniowa algorytmu powinna wynosić $O(ElogE)$.
+Dodatkową techniką używana w algorytmie jest scalenie poprzez rangę \ang{union by rank} \cite{disj}, która pozwala na dołączenie mniejszego drzewa 
+do korzenia większego $O(logV)$ oraz kompresja ścieżki \ang{path compression} polegająca na spłaszczeniu drzewa podczas przeszukiwania  poprzez dołączanie 
+odwiedzonych wierzchołków bezpośrednio do korzenia. Złożoność obliczeniowa algorytmu powinna wynosić $O(ElogE)$.
 
 
 %struktura zbiorow rozlacznych
@@ -137,27 +137,57 @@ odwiedzonych wierzchołków bezpośrednio do korzenia.łożoność obliczeniowa 
 
 Grafy sa reprezentowane w postaci krawędziowej w pliku tekstowym, której
 każdy wiersz stanowi odrębną krawędź. Pierwsza i druga kolumna to numery wierzchołkow pomiędzy którymi istnieje krawędź.
-Kolumna trzecia zawiera wagę wierchołka w postaci całkowitoliczbowej.
+Kolumna trzecia zawiera wagę wierzchołka w postaci całkowitoliczbowej.
 
 {\bf{Program mst}}
 
 W celu uruchomienia algorytmów należy użyć polecenia: \\
 {\it mst nazwa\_pliku\_grafu.txt k lub p}, \\
-gdzie p oznacza użycie algorytmu Prima, a k Kruskala.
-
+gdzie p oznacza użycie algorytmu Prima, a k Kruskala. Dodatkowo można włączyć
+flagę DEBUG w pliku Makefile, co pozwoli uzyskać informacje o działaniu
+programu oraz grafy wynikowe.
 
 
 
 
 \section{Testy}
+
+Testy zostały przeprowadzone na maszynie wirtualnej VirtualBox z systemem Linux, której przydzielono
+jeden rdzeń procesora 2.98GHz oraz 2GB RAM. Badany był czas wykonania poszczególnych algorytmów, jak również
+zużycie pamięci za pomocą narzędzia Valgrind \cite{valg}.
+
+
+
 \subsection{Testy poprawności}
+
+Do testowania poprawności algorytmów zostały użyte 2 grafy o 4 i 8  wierzchołkach (./tests) oraz modyfikacje tych grafów
+zawierające cykle oraz krawędzie wielokrotne. Dodatkowo kilka drzew rozpinających z wygenerowanych grafów zostało przetestowanych
+za pomocą biblioteki networkX \cite{netx} dostępnego  dla języka Python.
+
 \subsection{Testy wydajnościowe}
 
+Testowanie wydajności polegało na pomiarze czasu wykonania algorytmu dla wygenerowanych grafów o różnej ilości wierzchołków oraz
+prawdopodobieństwach wystąpienia krawędzi pomiędzy nimi. Grafy zostały wygenerowane przy pomocy biblioteki networkX, aby uruchomić generacje
+należy wywołać skrypt poleceniem: \\
+python graph\_gen/generator.py \\
+Dodatkowo w celu automatyzacji testów został zaprojektowany skrypt run\_tests.sh, który automatycznie pobiera dane z wygenerowanych grafów
+i uruchamia program dla poszczególnych algorytmów. Testy wydajnościowe zostały wykonane dla grafów o liczbie wierzchołków 500, 1000, 2000, 3000 i prawdopodobieństwie 
+wystąpienia krawędzi 0.1, 0.3, 0.5, 0.7, 0.9 .
+\hfill
+\hfill
+
+
 \subsection{Zużycie pamięci}
+
+Do pomiaru zużycia pamięci zostało wykorzystane narzędzie Valgrind służące do analizy pamięci wykorzystywanej przez program.
+W celu przeprowadzenia testów należy uruchomić skrypt z dodatkowym parametrem mem: \\
+run\_tests.sh mem
+
 
 \section{Wyniki}
 
 \subsection{Czas wykonania}
+W poniższej tabeli prezentowane są czasy wykonania dla poszczególnych grafów.
 
 \begin{center}
     \begin{tabular}{| l | l | c | c |}
@@ -204,19 +234,45 @@ gdzie p oznacza użycie algorytmu Prima, a k Kruskala.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=165mm]{wykresy/v2000.eps}
-\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 2000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 2000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi }}
 \label{overflow}
 \end{figure}
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=165mm]{wykresy/v3000.eps}
-\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 3000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi}}
+\caption{\it{Czas wykonania algorytmów dla grafu zawierającego 3000 wierzchołków w zależności od prawdopodobieństwa wystąpienia krawędzi }}
 \label{overflow}
 \end{figure}
 
 
+\hfill
+
+\hfill
+
+\hfill
+\FloatBarrier
+
+
+
+
 \subsection{Pamięć}
+
+
+\begin{center}
+    \begin{tabular}{| l | l | c | c |}
+    \hline
+    V & p & Prim [kB] & Kruskal [kB] \\ \hline
+	2000 & 0.1 & 9436 & 2376  \\ 
+	2000 & 0.3 & 28190& 7066  \\ 
+	2000 & 0.5 & 46901& 11747  \\ 
+	2000 & 0.7 & 65662& 16434  \\ 
+	2000 & 0.9 & 84410& 21122  \\ \hline
+    \end{tabular}
+\end{center}
+
+
+
 
 \begin{figure}[ht!]
 \centering
@@ -227,13 +283,19 @@ gdzie p oznacza użycie algorytmu Prima, a k Kruskala.
 \FloatBarrier
 \section{Wnioski}
 
+Z rezultatów wynika, że algorytm Prima z kopcem binarnym i kompresją ścieżek jest średnio o połowę szybszy od algorytmu Kruskala dla wszystkich przeprowadzonych testów wydajnościowych.
+O ile w testach wydajnościowych Prim wypada znacznie lepiej, o tyle algorytm Kruskala charakteryzuje się średnio czterokrotnie mniejszym zużyciem pamięci. Wynika stąd wniosek, że algorytm 
+Kruskala może być używany w systemach z małą ilością pamięci operacyjnej np. w systemach wbudowanych. Jeśli dysponujemy dużymi zasobami pamięci to do znajdywania minimalnego drzewa rozpinającego
+powinien być wykorzystany algorytm Prima.
+
+
 
 
 
 
 
 	
-
+\FloatBarrier
 
 
 

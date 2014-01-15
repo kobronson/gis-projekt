@@ -41,7 +41,7 @@ tgz: clean
 	( D=`basename $$PWD`; cd ..; tar czf $$D.tgz $$D; ls -l $$D.tgz )
 
 aspell:
-	aspell --lang=pl  -t check gis_spr3
+	aspell --lang=pl  -t check gis_spr3.tex
 	
 v: t t.ps
 
